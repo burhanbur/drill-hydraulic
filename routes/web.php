@@ -1,9 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BuildHoldController;
-use App\Http\Controllers\BuildHoldDropController;
-use App\Http\Controllers\HorizontalWellController;
 
 use App\Http\Controllers\EquivalentCirculatingController;
 use App\Http\Controllers\FlowrateMinimumController;
@@ -21,14 +18,11 @@ use App\Http\Controllers\RheologicalController;
 |
 */
 
-Route::get('/', [BuildHoldController::class, 'index']);
+Route::get('/', [RheologicalController::class, 'index']);
 
-Route::group(['prefix' => 'well-trajectory'], function () {
-	Route::get('build-hold', [BuildHoldController::class, 'index'])->name('build.hold');
-	Route::get('build-hold-drop', [BuildHoldDropController::class, 'index'])->name('build.hold.drop');
-	Route::get('horizontal-well', [HorizontalWellController::class, 'index'])->name('horizontal.well');
-});
-
-Route::group(['prefix' => 'hydraulic'], function () {
+Route::group(['prefix' => 'drill-hydraulic'], function () {
 	Route::get('rheological', [RheologicalController::class, 'index'])->name('rheological');
+	Route::get('pressure-loss', [PressureLossController::class, 'index'])->name('pressure.loss');
+	Route::get('ecd', [EquivalentCirculatingController::class, 'index'])->name('ecd');
+	Route::get('fmc', [FlowrateMinimumController::class, 'index'])->name('fmc');
 });

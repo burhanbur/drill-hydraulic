@@ -9,6 +9,6 @@ class EquivalentCirculatingController extends Controller
 {
     public function index(Request $request)
     {
-
+        return view('underconstruction', get_defined_vars());
     }
 }

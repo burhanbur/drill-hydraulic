@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Well Trajectory - Build Hold')
+@section('title', 'Drill Hydraulic - Rheological')
 
 @section('css')
 <style>
@@ -162,7 +162,7 @@
 				            		<tr>
 				            			<th>{{ $nParam[$i] }}</th>
 				            			<td>
-						                    <input type="number" step="any" name="dial_reading_fann_data[]" class="form-control-custom" required value="{{ (double) @$request->dial_reading_fann_data[$i] }}" />
+						                    <input type="number" step="any" name="dial_reading_fann_data[]" class="form-control-custom" required value="{{ @$request->dial_reading_fann_data[$i] }}" />
 			            				</td>
 				            		</tr>
 				        		@endfor

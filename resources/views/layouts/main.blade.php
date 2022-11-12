@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('logo.png') }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('harry.png') }}">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.min.css">
@@ -16,25 +16,22 @@
 
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
   <div class="container">
-    <a class="navbar-brand" href="{{ url('/') }}">Tracy UP</a>
+    <a class="navbar-brand" href="{{ url('/') }}">HARRY UP</a>
     <ul class="navbar-nav">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Well Trajectory </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="{{ route('build.hold') }}">Build Hold</a>
-          <a class="dropdown-item" href="{{ route('build.hold.drop') }}">Build Hold Drop</a>
-          <a class="dropdown-item" href="{{ route('horizontal.well') }}">Horizontal Well</a>
-        </div>
+      <li class="nav-item">
+        <a class="nav-link @if (Request::is('drill-hydraulic/rheological*')) active @endif" href="{{ route('rheological') }}">Rheological</a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Hydraulics </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="{{ route('rheological') }}">Rheological</a>
-          <a class="dropdown-item" href="#">Pressure Loss</a>
-          <a class="dropdown-item" href="#">AFP</a>
-          <a class="dropdown-item" href="#">Equivalent Circulating Density</a>
-          <a class="dropdown-item" href="#">Flowrate Minimum Cuttings-done</a>
-        </div>
+      <li class="nav-item">
+        <a class="nav-link @if (Request::is('drill-hydraulic/pressure-loss*')) active @endif" href="{{ route('pressure.loss') }}">Pressure Loss</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link @if (Request::is('drill-hydraulic/afp*')) active @endif" href="#">AFP</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link @if (Request::is('drill-hydraulic/ecd*')) active @endif" href="{{ route('ecd') }}">Equivalent Circulating Density</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link @if (Request::is('drill-hydraulic/fmc*')) active @endif" href="{{ route('fmc') }}">Flowrate Minimum Cuttings-done</a>
       </li>
     </ul>
   </div>
