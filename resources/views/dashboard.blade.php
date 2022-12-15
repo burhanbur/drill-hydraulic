@@ -158,6 +158,9 @@
 
     $('#set-select').on('change', function() {
         getCombination(this.value);
+
+        let pipe = $('#edpt-select').find(":selected").val();
+        getOutputSurface(this.value, pipe);
     });
 
     getCombination('combination_1');
