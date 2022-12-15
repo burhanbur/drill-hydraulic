@@ -142,15 +142,64 @@ class HomeController extends Controller
             $xChartValues[] = round((float) $ns * 1.70333, 3);
         }
 
-        // echo "<pre>";
-        // var_dump($yChartValues);
-        // die;
-
         // pressure loss
 
         // ecd
 
-        // return view('welcome', get_defined_vars());
         return view('dashboard', get_defined_vars());
+    }
+
+    public function ajaxCombination(Request $request)
+    {
+        // $combination = [];
+        $req = $request->get('combination');
+
+        switch ($req) {
+            case 'combination_1':
+                $combination = \App\Helpers\Dropdown::listCombination1();
+                break;
+            case 'combination_2':
+                $combination = \App\Helpers\Dropdown::listCombination2();
+                break;
+            case 'combination_3':
+                $combination = \App\Helpers\Dropdown::listCombination3();
+                break;
+            case 'combination_4':
+                $combination = \App\Helpers\Dropdown::listCombination4();
+                break;
+
+            default:
+                // $combination = \App\Helpers\Dropdown::listCombination1();
+                break;
+        }
+
+        return response()->json($combination);
+    }
+
+    public function ajaxOutputSurfaceEquipment(Request $request)
+    {
+        $output = '0';
+        $combination = $request->get('combination');
+        $type = $request->get('type');
+
+        switch ($combination) {
+            case 'combination_1':
+                $output = \App\Helpers\Dropdown::listCombination1()[$type];
+                break;
+            case 'combination_2':
+                $output = \App\Helpers\Dropdown::listCombination2()[$type];
+                break;
+            case 'combination_3':
+                $output = \App\Helpers\Dropdown::listCombination3()[$type];
+                break;
+            case 'combination_4':
+                $output = \App\Helpers\Dropdown::listCombination4()[$type];
+                break;
+
+            default:
+                # code...
+                break;
+        }
+        return response()->json($output);
     }
 }

@@ -21,6 +21,8 @@ use App\Http\Controllers\RheologicalController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('ajax-combination', [HomeController::class, 'ajaxCombination'])->name('ajax.combination');
+Route::get('ajax-output-surface', [HomeController::class, 'ajaxOutputSurfaceEquipment'])->name('ajax.output.surface');
 
 Route::group(['prefix' => 'drill-hydraulic'], function () {
 	Route::get('rheological', [RheologicalController::class, 'index'])->name('rheological');

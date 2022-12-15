@@ -37,9 +37,39 @@ class Dropdown
 		return array_keys(static::listN());
 	}
 
+	public static function listDrillPipe()
+	{
+		return [
+			'edp_35' => 'Equivalent Drill Pipe 3.5", 13.3 lb/ft [ft]',
+			'edp_45' => 'Equivalent Drill Pipe 4.5", 16.6 lb/ft [ft]',
+			'edp_50' => 'Equivalent Drill Pipe 5", 19.5 lb/ft [ft]',
+		];
+	}
+
+	public static function allowedDrillPipe()
+	{
+		return array_keys(static::listDrillPipe());
+	}
+
+	public static function listCombinations()
+	{
+		return [
+			'combination_1' => 'Combination 1',
+			'combination_2' => 'Combination 2',
+			'combination_3' => 'Combination 3',
+			'combination_4' => 'Combination 4',
+		];
+	}
+
+	public static function allowedCombinations()
+	{
+		return array_keys(static::listCombinations());
+	}
+
 	public static function listCombination1()
 	{
 		return [
+			'combination' => 'combination_1',
 			'standpipe_id' => '3',
 			'standpipe_length' => '40',
 			'rotary_hose_id' => '2',
@@ -62,6 +92,7 @@ class Dropdown
 	public static function listCombination2()
 	{
 		return [
+			'combination' => 'combination_2',
 			'standpipe_id' => '3.5',
 			'standpipe_length' => '40',
 			'rotary_hose_id' => '2.5',
@@ -84,6 +115,7 @@ class Dropdown
 	public static function listCombination3()
 	{
 		return [
+			'combination' => 'combination_3',
 			'standpipe_id' => '4',
 			'standpipe_length' => '45',
 			'rotary_hose_id' => '3',
@@ -106,6 +138,7 @@ class Dropdown
 	public static function listCombination4()
 	{
 		return [
+			'combination' => 'combination_4',
 			'standpipe_id' => '4',
 			'standpipe_length' => '45',
 			'rotary_hose_id' => '3',

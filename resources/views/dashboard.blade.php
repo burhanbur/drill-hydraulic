@@ -3,6 +3,7 @@
 @section('title', 'Drill Hydraulic - Dashboard')
 
 @section('css')
+<link rel="stylesheet" href="{{ asset('style.css') }}" />
 <style>
     .text-center {
         text-align: center;
@@ -131,6 +132,56 @@
             }
         });
     <?php } ?>
+
+    function getCombination(value) {
+        $.ajax({
+            type: 'GET',
+            url: "{{ route('ajax.combination') }}",
+            data: {
+                combination: value
+            },
+            success: function(data) {
+                $('#set_standpipe_id').val(data.standpipe_id);
+                $('#set_standpipe_length').val(data.standpipe_length);
+                $('#set_rotary_hose_id').val(data.rotary_hose_id);
+                $('#set_rotary_hose_length').val(data.rotary_hose_length);
+                $('#set_swivel_id').val(data.swivel_id);
+                $('#set_swivel_length').val(data.swivel_length);
+                $('#set_kelly_pipe_id').val(data.kelly_pipe_id);
+                $('#set_kelly_pipe_length').val(data.kelly_pipe_length);
+                $('#set_edp_35').val(data.edp_35);
+                $('#set_edp_45').val(data.edp_45);
+                $('#set_edp_50').val(data.edp_50);
+            }
+        });
+    }
+
+    $('#set-select').on('change', function() {
+        getCombination(this.value);
+    });
+
+    getCombination('combination_1');
+
+    function getOutputSurface(combination, type) {
+        $.ajax({
+            type: 'GET',
+            url: "{{ route('ajax.output.surface') }}",
+            data: {
+                combination: combination,
+                type: type
+            },
+            success: function(data) {
+                $('#output_se_edpl').val(data);
+            }
+        });
+    }
+
+    $('#edpt-select').on('change', function() {
+        let combination = $('#set-select').find(":selected").val();
+        getOutputSurface(combination, this.value);
+    });
+
+    getOutputSurface('combination_1', 'edp_35');
 </script>
 @endsection
 
@@ -140,6 +191,8 @@
         <div class="row">
             <div class="col-md-12">
 
+                @include('modal-input')
+
                 <div class="card-body">
                     <div class="tab-content">
                         <div class="tab-pane active" id="rheological">
@@ -147,7 +200,7 @@
                         </div>
 
                         <div class="tab-pane" id="pressure">
-                            @include('underconstruction')
+                            @include('pressure-loss')
                         </div>
 
                         <div class="tab-pane" id="ecd">
@@ -157,8 +210,6 @@
                 </div>
             </div>
         </div>
-</div>
-
-</section>
+    </section>
 </div>
 @endsection
