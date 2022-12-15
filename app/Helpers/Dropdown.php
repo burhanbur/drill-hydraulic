@@ -37,6 +37,94 @@ class Dropdown
 		return array_keys(static::listN());
 	}
 
+	public static function listCombination1()
+	{
+		return [
+			'standpipe_id' => '3',
+			'standpipe_length' => '40',
+			'rotary_hose_id' => '2',
+			'rotary_hose_length' => '45',
+			'swivel_id' => '2',
+			'swivel_length' => '4',
+			'kelly_pipe_id' => '2.25',
+			'kelly_pipe_length' => '40',
+			'edp_35' => '437',
+			'edp_45' => '161',
+			'edp_50' => '0',
+		];
+	}
+
+	public static function allowedCombination1()
+	{
+		return array_keys(static::listCombination1());
+	}
+
+	public static function listCombination2()
+	{
+		return [
+			'standpipe_id' => '3.5',
+			'standpipe_length' => '40',
+			'rotary_hose_id' => '2.5',
+			'rotary_hose_length' => '55',
+			'swivel_id' => '2.5',
+			'swivel_length' => '5',
+			'kelly_pipe_id' => '3.3',
+			'kelly_pipe_length' => '40',
+			'edp_35' => '0',
+			'edp_45' => '761',
+			'edp_50' => '0',
+		];
+	}
+
+	public static function allowedCombination2()
+	{
+		return array_keys(static::listCombination2());
+	}
+
+	public static function listCombination3()
+	{
+		return [
+			'standpipe_id' => '4',
+			'standpipe_length' => '45',
+			'rotary_hose_id' => '3',
+			'rotary_hose_length' => '55',
+			'swivel_id' => '2.5',
+			'swivel_length' => '5',
+			'kelly_pipe_id' => '3.3',
+			'kelly_pipe_length' => '40',
+			'edp_35' => '0',
+			'edp_45' => '479',
+			'edp_50' => '816',
+		];
+	}
+
+	public static function allowedCombination3()
+	{
+		return array_keys(static::listCombination3());
+	}
+
+	public static function listCombination4()
+	{
+		return [
+			'standpipe_id' => '4',
+			'standpipe_length' => '45',
+			'rotary_hose_id' => '3',
+			'rotary_hose_length' => '55',
+			'swivel_id' => '3',
+			'swivel_length' => '6',
+			'kelly_pipe_id' => '4',
+			'kelly_pipe_length' => '40',
+			'edp_35' => '0',
+			'edp_45' => '340',
+			'edp_50' => '576',
+		];
+	}
+
+	public static function allowedCombination4()
+	{
+		return array_keys(static::listCombination4());
+	}
+
 	public static function listColor()
 	{
 		return [

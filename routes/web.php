@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\HomeController;
+
 use App\Http\Controllers\EquivalentCirculatingController;
 use App\Http\Controllers\FlowrateMinimumController;
 use App\Http\Controllers\PressureLossController;
@@ -18,7 +20,7 @@ use App\Http\Controllers\RheologicalController;
 |
 */
 
-Route::get('/', [RheologicalController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
 
 Route::group(['prefix' => 'drill-hydraulic'], function () {
 	Route::get('rheological', [RheologicalController::class, 'index'])->name('rheological');

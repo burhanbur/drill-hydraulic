@@ -1,20 +1,3 @@
-@extends('layouts.main')
-
-@section('title', 'Drill Hydraulic')
-
-@section('css')
-<style>
-    .text-center {
-        text-align: center;
-    }
-</style>
-@endsection
-
-@section('js')
-
-@endsection
-
-@section('container')
 <div class="container">
     <br>
     <div class="text-center">
@@ -23,4 +6,3 @@
         <h3 class="center">Mohon maaf, halaman ini masih dalam tahap pengembangan.</h3>
     </div>
 </div>
-@endsection
