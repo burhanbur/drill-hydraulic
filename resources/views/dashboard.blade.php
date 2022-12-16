@@ -163,7 +163,8 @@
         getOutputSurface(this.value, pipe);
     });
 
-    getCombination('combination_1');
+
+    getCombination($('#set-select').find(":selected").val());
 
     function getOutputSurface(combination, type) {
         $.ajax({
@@ -184,7 +185,7 @@
         getOutputSurface(combination, this.value);
     });
 
-    getOutputSurface('combination_1', 'edp_35');
+    getOutputSurface($('#set-select').find(":selected").val(), $('#edpt-select').find(":selected").val());
 </script>
 @endsection
 

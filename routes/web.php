@@ -20,7 +20,7 @@ use App\Http\Controllers\RheologicalController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('ajax-combination', [HomeController::class, 'ajaxCombination'])->name('ajax.combination');
 Route::get('ajax-output-surface', [HomeController::class, 'ajaxOutputSurfaceEquipment'])->name('ajax.output.surface');
 
