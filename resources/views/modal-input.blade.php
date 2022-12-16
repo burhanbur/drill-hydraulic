@@ -1,7 +1,6 @@
 <div class="modal fade" id="modal-xl" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <form action="" method="GET">
-            <input type="text" name="input" value="{{ json_encode(app('request')->request->all()) }}">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Input Group</h4>
