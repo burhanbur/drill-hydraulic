@@ -178,4 +178,32 @@ class Dropdown
 	{
 		return array_keys(static::listN());
 	}
+
+	public static function listCasingType()
+	{
+		return [
+			'surface_casing' => 'Surface Casing',
+			'intermediate_casing' => 'Intermediate Casing',
+			'production_casing' => 'Production Casing',
+			'open_hole' => 'Open Hole',
+		];
+	}
+
+	public static function allowedCasingType()
+	{
+		return array_keys(static::listCasingType());
+	}
+
+	public static function listComponentPsi()
+	{
+		return [
+			'drill_pipe' => 'Drill Pipe',
+			'drill_collar' => 'Drill Collar',
+		];
+	}
+
+	public static function allowedComponentPsi()
+	{
+		return array_keys(static::listComponentPsi());
+	}
 }

@@ -112,13 +112,13 @@
     $(document).ready(function() {
       $('.select2').select2();
 
-      $('#set-select').select2({
-        dropdownParent: $('#modal-xl')
-      });
+      // $('#set-select').select2({
+      //   dropdownParent: $('#modal-xl')
+      // });
 
-      $('#edpt-select').select2({
-        dropdownParent: $('#modal-xl')
-      });
+      // $('#edpt-select').select2({
+      //   dropdownParent: $('#modal-xl')
+      // });
     });
   </script>
 

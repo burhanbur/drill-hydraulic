@@ -28,6 +28,12 @@
 
 @section('js')
 <script>
+    jQuery('.digitsOnly').keypress(function(event){
+        if(event.which !=8 && isNaN(String.fromCharCode(event.which))){
+            event.preventDefault();
+        }
+    });
+
     <?php if ($model == 'semua') { ?>
         var chartData = {
             labels: <?= json_encode($xChartValues); ?>,
@@ -132,6 +138,31 @@
             }
         });
     <?php } ?>
+
+    function bottomCriticalDepth(i) {
+        let bot = $('#casing_length' + i).val();
+
+        $('#casing_bottom_citical_depth' + i).val(bot);
+
+        let top = 0;
+        if (i != 1) {
+            top = $('#casing_length' + (i - 1)).val();
+        }
+
+        $('#casing_top_citical_depth' + i).val(top);
+    }
+
+    function psiMd(value, component, i) {
+        let md = 0;
+
+        if (component == 'drill_pipe') {
+            md = value;
+        } else {
+            md = Number(value) + Number($('#psi_md' + (i - 1)).val());
+        }
+
+        $('#psi_md' + i).val(md);
+    }
 
     function getCombination(value) {
         $.ajax({

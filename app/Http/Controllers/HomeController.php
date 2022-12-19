@@ -151,7 +151,7 @@ class HomeController extends Controller
 
     public function ajaxCombination(Request $request)
     {
-        // $combination = [];
+        $combination = [];
         $req = $request->get('combination');
 
         switch ($req) {

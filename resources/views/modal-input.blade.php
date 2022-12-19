@@ -10,13 +10,138 @@
                 </div>
 
                 <div class="modal-body">
+                    <h3 class="text-center">Fluida Bingham Plastic</h3>
+                    <br>
                     <div class="row">
+
+                        <div class="col-md-12">
+                            <fieldset class="border p-3 reset">
+                                <legend class="reset"><strong>Casing Data Information</strong></legend>
+                                <table class="table">
+                                    <tr>
+                                        <th class="text-center" style="width: 20%;">Casing Type</th>
+                                        <th class="text-center">Length [ft]</th>
+                                        <th class="text-center">Top Critical Depth</th>
+                                        <th class="text-center">Bottom Critical Depth</th>
+                                        <th class="text-center">ID [in]</th>
+                                        <th class="text-center">OD [in]</th>
+                                    </tr>
+                                    @php
+                                        $i = 0;
+                                    @endphp
+                                    @foreach(\App\Helpers\Dropdown::listCasingType() as $k => $v)
+                                    <tr>
+                                        <td class="text-center">{{ $v }}</td>
+                                        <td>
+                                            <input type="number" step="any" id="casing_length{{$i}}" onkeyup="bottomCriticalDepth({{$i}})" name="casing_length[]" class="form-control" value="{{ @$request->get('casing_length[$i]') }}" required>
+                                        </td>
+                                        <td>
+                                            <input type="number" step="any" id="casing_top_citical_depth{{$i}}" name="casing_top_citical_depth[]" class="form-control" value="{{ @$request->get('casing_top_citical_depth[$i]') }}" readonly>
+                                        </td>
+                                        <td>
+                                            <input type="number" step="any" id="casing_bottom_citical_depth{{$i}}" name="casing_bottom_citical_depth[]" class="form-control" value="{{ @$request->get('casing_bottom_citical_depth[$i]') }}" readonly>
+                                        </td>
+                                        <td>
+                                            <input type="number" step="any" id="casing_id{{$i}}" name="casing_id[]" class="form-control" value="{{ @$request->get('casing_id[$i]') }}" required>
+                                        </td>
+                                        <td>
+                                            <input type="number" step="any" id="casing_od{{$i}}" name="casing_od[]" class="form-control" value="{{ @$request->get('casing_od[$i]') }}" required>
+                                        </td>
+                                    </tr>
+                                    @php $i++; @endphp
+                                    @endforeach
+                                </table>
+                            </fieldset>
+
+                            <!-- <fieldset class="border p-3 reset">
+                                <legend class="reset"><strong>Casing Data Information</strong></legend>
+                                <div class="form-group">
+                                    <label>Casing Type</label>
+                                    <select class="form-control" name="casing_type[]" required>
+                                        @foreach(\App\Helpers\Dropdown::listCasingType() as $k => $v)
+                                        <option @php echo ($k==@$request->get('casing_type')) ? 'selected' : '' @endphp value="{{ $k }}">{{ $v }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Length [ft]</label>
+                                    <input type="number" type="any" name="casing_length[]" class="form-control" required>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Top Critical Depth</label>
+                                            <input type="number" type="any" name="casing_top_citical_depth[]" class="form-control" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Bottom Critical Depth</label>
+                                            <input type="number" type="any" name="casing_bottom_citical_depth[]" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>ID [in]</label>
+                                            <input type="number" step="any" name="casing_id[]" class="form-control" required>
+                                        </div>                                    
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>OD [in]</label>
+                                            <input type="number" step="any" name="casing_od[]" class="form-control" required>
+                                        </div>                                    
+                                    </div>                                    
+                                </div>
+                            </fieldset> -->
+                        </div>
+
+                        <div class="col-md-12">
+                            <fieldset class="border p-3 reset">
+                                <legend class="reset"><strong>Pressure Loss Inside</strong></legend>
+                                <table class="table">
+                                    <tr>
+                                        <th class="text-center">Component</th>
+                                        <th class="text-center">Length [ft]</th>
+                                        <th class="text-center">Measured Depth [ft]</th>
+                                        <th class="text-center">Outer Diameter [ft]</th>
+                                        <th class="text-center">Inner Diameter [ft]</th>
+                                    </tr>
+                                    @php $i = 0 @endphp
+                                    @foreach(\App\Helpers\Dropdown::listComponentPsi() as $k => $v)
+                                    <tr>
+                                        <td>{{ $v }}</td>
+                                        <td>
+                                            <input type="number" step="any" id="psi_length{{$i}}" name="psi_length[]" onkeyup="psiMd(this.value, '{{$k}}', '{{$i}}')" class="form-control" value="{{ @$request->get('psi_length[$i]') }}" required>
+                                        </td>
+                                        <td>
+                                            <input type="number" step="any" id="psi_md{{$i}}" name="psi_md[]" class="form-control" value="{{ @$request->get('psi_md[$i]') }}" readonly>
+                                        </td>
+                                        <td>
+                                            <input type="number" step="any" name="psi_od[]" class="form-control" value="{{ @$request->get('psi_od[$i]') }}" required>
+                                        </td>
+                                        <td>
+                                            <input type="number" step="any" name="psi_id[]" class="form-control" value="{{ @$request->get('psi_id[$i]') }}" required>
+                                        </td>
+                                    </tr>
+                                    @php $i++ @endphp
+                                    @endforeach
+                                </table>
+                            </fieldset>
+                        </div>
 
                         <div class="col-md-6">
                             <fieldset class="border p-3 reset">
-                                <legend class="reset"><strong>Input Fluida Bingham Plastic</strong></legend>
+                                <legend class="reset"><strong>Input Informasi Kedalaman</strong></legend>
                                 <div class="form-group">
-                                    <label>Total Measured Depth</label>
+                                    <label>Total Measured Depth [ft]</label>
                                     <input type="number" step="any" name="total_measured_depth" class="form-control" required value="{{ @$request->get('total_measured_depth') }}" />
                                 </div>
                             </fieldset>
@@ -27,24 +152,24 @@
                                     <div class="col-md-6">
 
                                         <div class="form-group">
-                                            <label>Mud Density</label>
+                                            <label>Mud Density [ppg]</label>
                                             <input type="number" step="any" name="mud_density" class="form-control" required value="{{ @$request->get('mud_density') }}" />
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Plastic Viscosity (μp)</label>
+                                            <label>Plastic Viscosity (μp) [cP]</label>
                                             <input type="number" step="any" name="plastic_viscosity" class="form-control" required value="{{ @$request->get('plastic_viscosity') }}" />
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Yield Point</label>
+                                            <label>Yield Point [lb/100 ft2]</label>
                                             <input type="number" step="any" name="yield_point" class="form-control" required value="{{ @$request->get('yield_point') }}" />
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Flow Rate </label>
+                                            <label>Flow Rate [gpm]</label>
                                             <input type="number" step="any" name="flow_rate" class="form-control" required value="{{ @$request->get('flow_rate') }}" />
                                         </div>
 
@@ -102,7 +227,7 @@
                                 <div class="form-group">
                                     <label>Surface Equipment Type </label>
                                     <br>
-                                    <select name="set_select" class="" id="set-select" style="width: 100%;">
+                                    <select name="set_select" class="form-control" id="set-select" style="width: 100%;">
                                         @foreach(\App\Helpers\Dropdown::listCombinations() as $k => $v)
                                         <option @php echo ($k==@$request->get('set_select')) ? 'selected' : '' @endphp value="{{ $k }}">{{ $v }}</option>
                                         @endforeach
@@ -112,11 +237,16 @@
                                 <div class="form-group">
                                     <label>Equivalent Drill Pipe Type </label>
                                     <br>
-                                    <select name="edpt_select" class="" id="edpt-select" style="width: 100%;">
+                                    <select name="edpt_select" class="form-control" id="edpt-select" style="width: 100%;">
                                         @foreach(\App\Helpers\Dropdown::listDrillPipe() as $k => $v)
                                         <option @php echo ($k==@$request->get('edpt_select')) ? 'selected' : '' @endphp value="{{ $k }}">{{ $v }}</option>
                                         @endforeach
                                     </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Output Surface Equipment</label>
+                                    <input type="text" name="output_se_edpl" id="output_se_edpl" class="form-control" readonly>
                                 </div>
 
                                 <div class="row">
