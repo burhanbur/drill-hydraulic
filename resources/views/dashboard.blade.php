@@ -145,7 +145,7 @@
         $('#casing_bottom_citical_depth' + i).val(bot);
 
         let top = 0;
-        if (i != 1) {
+        if (i != 0) {
             top = $('#casing_length' + (i - 1)).val();
         }
 
