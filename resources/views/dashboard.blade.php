@@ -23,6 +23,10 @@
         border-radius: 0.25rem;
         transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     }
+
+    .hidden {
+        display: none;
+    }
 </style>
 @endsection
 
@@ -230,11 +234,11 @@
 
                 <div class="card-body">
                     <div class="tab-content">
-                        <div class="tab-pane active" id="rheological">
+                        <div class="tab-pane" id="rheological">
                             @include('rheological')
                         </div>
 
-                        <div class="tab-pane" id="pressure">
+                        <div class="tab-pane active" id="pressure">
                             @include('pressure-loss')
                         </div>
 

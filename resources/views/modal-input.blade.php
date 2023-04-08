@@ -16,13 +16,21 @@
 
                         <div class="col-md-12">
                             <fieldset class="border p-3 reset">
+                                <legend class="reset"><strong>Input Measurement Depth</strong></legend>
+                                <div class="form-group">
+                                    <label>Total Measured Depth [ft]</label>
+                                    <input type="number" step="any" name="total_measured_depth" class="form-control" required value="{{ @$request->get('total_measured_depth') }}" />
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="border p-3 reset">
                                 <legend class="reset"><strong>Casing Data Information</strong></legend>
                                 <table class="table">
                                     <tr>
                                         <th class="text-center" style="width: 20%;">Casing Type</th>
                                         <th class="text-center">Length [ft]</th>
-                                        <th class="text-center">Top Critical Depth</th>
-                                        <th class="text-center">Bottom Critical Depth</th>
+                                        <th class="text-center hidden">Top Critical Depth</th>
+                                        <th class="text-center hidden">Bottom Critical Depth</th>
                                         <th class="text-center">ID [in]</th>
                                         <th class="text-center">OD [in]</th>
                                     </tr>
@@ -35,10 +43,10 @@
                                         <td>
                                             <input type="number" step="any" id="casing_length{{$i}}" onkeyup="bottomCriticalDepth({{$i}})" name="casing_length[]" class="form-control" value="{{ @$request->get('casing_length[$i]') }}" required>
                                         </td>
-                                        <td>
+                                        <td class="hidden">
                                             <input type="number" step="any" id="casing_top_citical_depth{{$i}}" name="casing_top_citical_depth[]" class="form-control" value="{{ @$request->get('casing_top_citical_depth[$i]') }}" readonly>
                                         </td>
-                                        <td>
+                                        <td class="hidden">
                                             <input type="number" step="any" id="casing_bottom_citical_depth{{$i}}" name="casing_bottom_citical_depth[]" class="form-control" value="{{ @$request->get('casing_bottom_citical_depth[$i]') }}" readonly>
                                         </td>
                                         <td>
@@ -104,13 +112,13 @@
                         </div>
 
                         <div class="col-md-12">
-                            <fieldset class="border p-3 reset">
+                            {{-- <fieldset class="border p-3 reset">
                                 <legend class="reset"><strong>Pressure Loss Inside</strong></legend>
                                 <table class="table">
                                     <tr>
                                         <th class="text-center">Component</th>
                                         <th class="text-center">Length [ft]</th>
-                                        <th class="text-center">Measured Depth [ft]</th>
+                                        <th class="text-center hidden">Measured Depth [ft]</th>
                                         <th class="text-center">Outer Diameter [ft]</th>
                                         <th class="text-center">Inner Diameter [ft]</th>
                                     </tr>
@@ -121,7 +129,7 @@
                                         <td>
                                             <input type="number" step="any" id="psi_length{{$i}}" name="psi_length[]" onkeyup="psiMd(this.value, '{{$k}}', '{{$i}}')" class="form-control" value="{{ @$request->get('psi_length[$i]') }}" required>
                                         </td>
-                                        <td>
+                                        <td class="hidden">
                                             <input type="number" step="any" id="psi_md{{$i}}" name="psi_md[]" class="form-control" value="{{ @$request->get('psi_md[$i]') }}" readonly>
                                         </td>
                                         <td>
@@ -134,49 +142,7 @@
                                     @php $i++ @endphp
                                     @endforeach
                                 </table>
-                            </fieldset>
-                        </div>
-
-                        <div class="col-md-6">
-                            <fieldset class="border p-3 reset">
-                                <legend class="reset"><strong>Input Informasi Kedalaman</strong></legend>
-                                <div class="form-group">
-                                    <label>Total Measured Depth [ft]</label>
-                                    <input type="number" step="any" name="total_measured_depth" class="form-control" required value="{{ @$request->get('total_measured_depth') }}" />
-                                </div>
-                            </fieldset>
-
-                            <fieldset class="border p-3 reset">
-                                <legend class="reset"><strong>Input Drilling Fluid Information</strong></legend>
-                                <div class="row">
-                                    <div class="col-md-6">
-
-                                        <div class="form-group">
-                                            <label>Mud Density [ppg]</label>
-                                            <input type="number" step="any" name="mud_density" class="form-control" required value="{{ @$request->get('mud_density') }}" />
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Plastic Viscosity (μp) [cP]</label>
-                                            <input type="number" step="any" name="plastic_viscosity" class="form-control" required value="{{ @$request->get('plastic_viscosity') }}" />
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Yield Point [lb/100 ft2]</label>
-                                            <input type="number" step="any" name="yield_point" class="form-control" required value="{{ @$request->get('yield_point') }}" />
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Flow Rate [gpm]</label>
-                                            <input type="number" step="any" name="flow_rate" class="form-control" required value="{{ @$request->get('flow_rate') }}" />
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </fieldset>
+                            </fieldset> --}}
 
                             <fieldset class="border p-3 reset">
                                 <legend class="reset"><strong>Input Drill String</strong></legend>
@@ -221,7 +187,41 @@
                             </fieldset>
                         </div>
 
-                        <div class="col-md-6">
+                        {{-- <div class="col-md-6">
+                            <fieldset class="border p-3 reset">
+                                <legend class="reset"><strong>Input Drilling Fluid Information</strong></legend>
+                                <div class="row">
+                                    <div class="col-md-6">
+
+                                        <div class="form-group">
+                                            <label>Mud Density [ppg]</label>
+                                            <input type="number" step="any" name="mud_density" class="form-control" required value="{{ @$request->get('mud_density') }}" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Plastic Viscosity (μp) [cP]</label>
+                                            <input type="number" step="any" name="plastic_viscosity" class="form-control" required value="{{ @$request->get('plastic_viscosity') }}" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Yield Point [lb/100 ft2]</label>
+                                            <input type="number" step="any" name="yield_point" class="form-control" required value="{{ @$request->get('yield_point') }}" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Flow Rate [gpm]</label>
+                                            <input type="number" step="any" name="flow_rate" class="form-control" required value="{{ @$request->get('flow_rate') }}" />
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </div> --}}
+
+                        <div class="col-md-12">
                             <fieldset class="border p-3 reset">
                                 <legend class="reset"><strong>Input Surface Equipment Type</strong></legend>
                                 <div class="form-group">
@@ -244,72 +244,103 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Output Surface Equipment</label>
-                                    <input type="text" name="output_se_edpl" id="output_se_edpl" class="form-control" readonly>
+                                <div class="hidden">
+                                    <div class="form-group">
+                                        <label>Output Surface Equipment</label>
+                                        <input type="text" name="output_se_edpl" id="output_se_edpl" class="form-control" readonly>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Standpipe ID [in]</label>
+                                                <input type="text" name="set_standpipe_id" class="form-control" value="" id="set_standpipe_id" readonly>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Standpipe Length [ft]</label>
+                                                <input type="text" name="set_standpipe_length" class="form-control" value="" id="set_standpipe_length" readonly>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Rotary Hose ID [in]</label>
+                                                <input type="text" name="set_rotary_hose_id" class="form-control" value="" id="set_rotary_hose_id" readonly>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Rotary Hose Length [ft]</label>
+                                                <input type="text" name="set_rotary_hose_length" class="form-control" value="" id="set_rotary_hose_length" readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Swivel ID [in]</label>
+                                                <input type="text" name="set_swivel_id" class="form-control" value="" id="set_swivel_id" readonly>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Swivel Length [ft]</label>
+                                                <input type="text" name="set_swivel_length" class="form-control" value="" id="set_swivel_length" readonly>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Kelly Pipe ID [in]</label>
+                                                <input type="text" name="set_kelly_pipe_id" class="form-control" value="" id="set_kelly_pipe_id" readonly>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Kelly Pipe Length [ft]</label>
+                                                <input type="text" name="set_kelly_pipe_length" class="form-control" value="" id="set_kelly_pipe_length" readonly>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Equivalent Drill Pipe 3.5", 13.3 lb/ft [ft]</label>
+                                        <input type="text" name="set_edp_35" class="form-control" value="" id="set_edp_35" readonly>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Equivalent Drill Pipe 4.5", 16.6 lb/ft [ft]</label>
+                                        <input type="text" name="set_edp_45" class="form-control" value="" id="set_edp_45" readonly>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Equivalent Drill Pipe 5", 19.5 lb/ft [ft]</label>
+                                        <input type="text" name="set_edp_50" class="form-control" value="" id="set_edp_50" readonly>
+                                    </div>
                                 </div>
+                            </fieldset>
+
+
+                            <fieldset class="border p-3 reset">
+                                <legend class="reset"><strong>Input Parameter Bit</strong></legend>
 
                                 <div class="row">
-
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Standpipe ID [in]</label>
-                                            <input type="text" name="set_standpipe_id" class="form-control" value="" id="set_standpipe_id" readonly>
+                                            <label>Densitas Fluida (ppg)</label>
+                                            <input type="number" step="any" name="densitas_fluida" class="form-control" required value="{{ @$request->get('densitas_fluida') }}" />
                                         </div>
-
                                         <div class="form-group">
-                                            <label>Standpipe Length [ft]</label>
-                                            <input type="text" name="set_standpipe_length" class="form-control" value="" id="set_standpipe_length" readonly>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Rotary Hose ID [in]</label>
-                                            <input type="text" name="set_rotary_hose_id" class="form-control" value="" id="set_rotary_hose_id" readonly>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Rotary Hose Length [ft]</label>
-                                            <input type="text" name="set_rotary_hose_length" class="form-control" value="" id="set_rotary_hose_length" readonly>
-                                        </div>
+                                            <label>Flow Rate (gpm)</label>
+                                            <input type="number" step="any" name="flow_rate" class="form-control" required value="{{ @$request->get('flow_rate') }}" />
+                                        </div>                                    
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Swivel ID [in]</label>
-                                            <input type="text" name="set_swivel_id" class="form-control" value="" id="set_swivel_id" readonly>
+                                            <label>Total Area Nozzle (inch²)</label>
+                                            <input type="number" step="any" name="total_area_nozzle" class="form-control" required value="{{ @$request->get('total_area_nozzle') }}" />
                                         </div>
-
                                         <div class="form-group">
-                                            <label>Swivel Length [ft]</label>
-                                            <input type="text" name="set_swivel_length" class="form-control" value="" id="set_swivel_length" readonly>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Kelly Pipe ID [in]</label>
-                                            <input type="text" name="set_kelly_pipe_id" class="form-control" value="" id="set_kelly_pipe_id" readonly>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Kelly Pipe Length [ft]</label>
-                                            <input type="text" name="set_kelly_pipe_length" class="form-control" value="" id="set_kelly_pipe_length" readonly>
+                                            <label>Koeffisien Discharge (0.95)</label>
+                                            <input type="number" step="any" name="cd" class="form-control" required value="{{ @$request->get('cd') }}" />
                                         </div>
                                     </div>
-
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Equivalent Drill Pipe 3.5", 13.3 lb/ft [ft]</label>
-                                    <input type="text" name="set_edp_35" class="form-control" value="" id="set_edp_35" readonly>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Equivalent Drill Pipe 4.5", 16.6 lb/ft [ft]</label>
-                                    <input type="text" name="set_edp_45" class="form-control" value="" id="set_edp_45" readonly>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Equivalent Drill Pipe 5", 19.5 lb/ft [ft]</label>
-                                    <input type="text" name="set_edp_50" class="form-control" value="" id="set_edp_50" readonly>
                                 </div>
                             </fieldset>
                         </div>

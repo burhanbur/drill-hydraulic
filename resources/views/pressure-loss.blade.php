@@ -4,8 +4,15 @@
 
     <div class="row">
         <div class="col-md-12">
+            <fieldset class="borderp-3 reset">
+                <legend class="reset"><strong>Output Pressure Loss in Surface Equipment</strong></legend>
+                <table class="table">
+                    <tr></tr>
+                </table>
+            </fieldset>
+
             <fieldset class="border p-3 reset">
-                <legend class="reset"><strong>Output Pressure Loss inside [psi]</strong></legend>
+                <legend class="reset"><strong>Output Pressure Loss inside Drill String</strong></legend>
                 <table class="table">
                     <tr>
                         <th class="text-center">Component</th>
@@ -67,6 +74,14 @@
                         </td>
                         <td>340,0354962</td>
                     </tr>
+                </table>
+            </fieldset>
+
+
+            <fieldset class="borderp-3 reset">
+                <legend class="reset"><strong>Output Pressure Loss in Bit</strong></legend>
+                <table class="table">
+                    <tr></tr>
                 </table>
             </fieldset>
 
@@ -157,6 +172,13 @@
                         <td>37,96592195</td>
                         <td>31,33028949</td>
                     </tr>
+                </table>
+            </fieldset>
+
+            <fieldset class="borderp-3 reset">
+                <legend class="reset"><strong>Output Pressure Loss in Circulating System</strong></legend>
+                <table class="table">
+                    <tr></tr>
                 </table>
             </fieldset>
         </div>
