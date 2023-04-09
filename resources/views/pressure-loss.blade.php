@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <fieldset class="borderp-3 reset">
+            <fieldset class="border p-3 reset">
                 <legend class="reset"><strong>Output Pressure Loss in Surface Equipment</strong></legend>
                 <table class="table">
                     <tr></tr>
@@ -14,71 +14,85 @@
             <fieldset class="border p-3 reset">
                 <legend class="reset"><strong>Output Pressure Loss inside Drill String</strong></legend>
                 <table class="table">
-                    <tr>
-                        <th class="text-center">Component</th>
-                        <th class="text-center">Length [ft]</th>
-                        <th class="text-center">Measured Depth [ft]</th>
-                        <th class="text-center">Outer Diameter [ft]</th>
-                        <th class="text-center">Inner Diameter [ft]</th>
-                        <th class="text-center">Pressure Loss inside [psi]</th>
-                    </tr>
-                    @php $i = 0 @endphp
-                    @foreach(\App\Helpers\Dropdown::listComponentPsi() as $k => $v)
-                    <!-- <tr>
-                        <td>{{ $v }}</td>
-                        <td>
-                            {{ @$request->get('psi_length[$i]') }}
-                        </td>
-                        <td>
-                            {{ @$request->get('psi_md[$i]') }}
-                        </td>
-                        <td>
-                            {{ @$request->get('psi_od[$i]') }}
-                        </td>
-                        <td>
-                            {{ @$request->get('psi_id[$i]') }}
-                        </td>
-                        <td></td>
-                    </tr> -->
-                    @php $i++ @endphp
-                    @endforeach
-                    <tr>
-                        <td>Drill Pipe</td>
-                        <td>
-                            9500
-                        </td>
-                        <td>
-                            9500
-                        </td>
-                        <td>
-                            4.5
-                        </td>
-                        <td>
-                            3.826
-                        </td>
-                        <td>605,6575537</td>
-                    </tr>
-                    <tr>
-                        <td>Drill Collar</td>
-                        <td>
-                            450
-                        </td>
-                        <td>
-                            9950
-                        </td>
-                        <td>
-                            6.75
-                        </td>
-                        <td>
-                            2.25
-                        </td>
-                        <td>340,0354962</td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th class="text-center">Component</th>
+                            <th class="text-center">Length [ft]</th>
+                            <th class="text-center">Measured Depth [ft]</th>
+                            <th class="text-center">Outer Diameter [ft]</th>
+                            <th class="text-center">Inner Diameter [ft]</th>
+                            <th class="text-center">Pressure Loss inside [psi]</th>
+                            <th class="text-center">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php $i = 0 @endphp
+                        @foreach(\App\Helpers\Dropdown::listComponentPsi() as $k => $v)
+                        <!-- <tr>
+                            <td>{{ $v }}</td>
+                            <td>
+                                {{ @$request->get('psi_length[$i]') }}
+                            </td>
+                            <td>
+                                {{ @$request->get('psi_md[$i]') }}
+                            </td>
+                            <td>
+                                {{ @$request->get('psi_od[$i]') }}
+                            </td>
+                            <td>
+                                {{ @$request->get('psi_id[$i]') }}
+                            </td>
+                            <td></td>
+                        </tr> -->
+                        @php $i++ @endphp
+                        @endforeach
+                        <tr>
+                            <td>Drill Pipe</td>
+                            <td>
+                                9500
+                            </td>
+                            <td>
+                                9500
+                            </td>
+                            <td>
+                                4,5
+                            </td>
+                            <td>
+                                3,826
+                            </td>
+                            <td>605,6575537</td>
+                            <td>19.613,9835537</td>
+                        </tr>
+                        <tr>
+                            <td>Drill Collar</td>
+                            <td>
+                                450
+                            </td>
+                            <td>
+                                9950
+                            </td>
+                            <td>
+                                6,75
+                            </td>
+                            <td>
+                                2,25
+                            </td>
+                            <td>340,0354962</td>
+                            <td>10.749,0354962</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="5" class="text-center">Total</th>
+                            <th>945,6930499</th>
+                            <th>30.363,0190499</th>
+                        </tr>
+                    </tfoot>
                 </table>
             </fieldset>
 
 
-            <fieldset class="borderp-3 reset">
+            <fieldset class="border p-3 reset">
                 <legend class="reset"><strong>Output Pressure Loss in Bit</strong></legend>
                 <table class="table">
                     <tr></tr>
@@ -175,7 +189,7 @@
                 </table>
             </fieldset>
 
-            <fieldset class="borderp-3 reset">
+            <fieldset class="border p-3 reset">
                 <legend class="reset"><strong>Output Pressure Loss in Circulating System</strong></legend>
                 <table class="table">
                     <tr></tr>
