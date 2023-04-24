@@ -23,6 +23,7 @@
                                 </div>
                             </fieldset>
 
+                            <!-- 
                             <fieldset class="border p-3 reset">
                                 <legend class="reset"><strong>Casing Data Information</strong></legend>
                                 <table class="table">
@@ -61,7 +62,7 @@
                                 </table>
                             </fieldset>
 
-                            <!-- <fieldset class="border p-3 reset">
+                            <fieldset class="border p-3 reset">
                                 <legend class="reset"><strong>Casing Data Information</strong></legend>
                                 <div class="form-group">
                                     <label>Casing Type</label>
@@ -108,11 +109,9 @@
                                         </div>                                    
                                     </div>                                    
                                 </div>
-                            </fieldset> -->
-                        </div>
+                            </fieldset> 
 
-                        <div class="col-md-12">
-                            {{-- <fieldset class="border p-3 reset">
+                            <fieldset class="border p-3 reset">
                                 <legend class="reset"><strong>Pressure Loss Inside</strong></legend>
                                 <table class="table">
                                     <tr>
@@ -142,7 +141,8 @@
                                     @php $i++ @endphp
                                     @endforeach
                                 </table>
-                            </fieldset> --}}
+                            </fieldset> 
+                            -->
 
                             <fieldset class="border p-3 reset">
                                 <legend class="reset"><strong>Input Drill String</strong></legend>
@@ -185,9 +185,7 @@
                                 </div>
 
                             </fieldset>
-                        </div>
 
-                        {{-- <div class="col-md-6">
                             <fieldset class="border p-3 reset">
                                 <legend class="reset"><strong>Input Drilling Fluid Information</strong></legend>
                                 <div class="row">
@@ -202,6 +200,11 @@
                                             <label>Plastic Viscosity (μp) [cP]</label>
                                             <input type="number" step="any" name="plastic_viscosity" class="form-control" required value="{{ @$request->get('plastic_viscosity') }}" />
                                         </div>
+
+                                        <div class="form-group">
+                                            <label>Total Area Nozzle [inch²]</label>
+                                            <input type="number" step="any" name="total_area_nozzle" class="form-control" required value="{{ @$request->get('total_area_nozzle') }}" />
+                                        </div>
                                     </div>
 
                                     <div class="col-md-6">
@@ -215,13 +218,43 @@
                                             <input type="number" step="any" name="flow_rate" class="form-control" required value="{{ @$request->get('flow_rate') }}" />
                                         </div>
 
+                                        <div class="form-group">
+                                            <label>Koeffisien Discharge [0.95]</label>
+                                            <input type="number" step="any" name="cd" class="form-control" required value="{{ @$request->get('cd') }}" />
+                                        </div>
                                     </div>
                                 </div>
 
                             </fieldset>
-                        </div> --}}
 
-                        <div class="col-md-12">
+                            <!-- <fieldset class="border p-3 reset">
+                                <legend class="reset"><strong>Input Parameter Bit</strong></legend>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Densitas Fluida [ppg]</label>
+                                            <input type="number" step="any" name="densitas_fluida" class="form-control" required value="{{ @$request->get('densitas_fluida') }}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Flow Rate [gpm]</label>
+                                            <input type="number" step="any" name="flow_rate" class="form-control" required value="{{ @$request->get('flow_rate') }}" />
+                                        </div>                                    
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Total Area Nozzle [inch²]</label>
+                                            <input type="number" step="any" name="total_area_nozzle" class="form-control" required value="{{ @$request->get('total_area_nozzle') }}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Koeffisien Discharge [0.95]</label>
+                                            <input type="number" step="any" name="cd" class="form-control" required value="{{ @$request->get('cd') }}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset> -->
+
                             <fieldset class="border p-3 reset">
                                 <legend class="reset"><strong>Input Surface Equipment Type</strong></legend>
                                 <div class="form-group">
@@ -246,8 +279,12 @@
 
                                 <div class="hidden">
                                     <div class="form-group">
-                                        <label>Output Surface Equipment</label>
+                                        <label>Equivalent Drill Pipe Length</label>
                                         <input type="text" name="output_se_edpl" id="output_se_edpl" class="form-control" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Equivalent Drill Pipe ID</label>
+                                        <input type="text" name="output_se_edpi" id="output_se_edpi" class="form-control" readonly>
                                     </div>
 
                                     <div class="row">
@@ -314,42 +351,13 @@
                                     </div>
                                 </div>
                             </fieldset>
-
-
-                            <fieldset class="border p-3 reset">
-                                <legend class="reset"><strong>Input Parameter Bit</strong></legend>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Densitas Fluida (ppg)</label>
-                                            <input type="number" step="any" name="densitas_fluida" class="form-control" required value="{{ @$request->get('densitas_fluida') }}" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Flow Rate (gpm)</label>
-                                            <input type="number" step="any" name="flow_rate" class="form-control" required value="{{ @$request->get('flow_rate') }}" />
-                                        </div>                                    
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Total Area Nozzle (inch²)</label>
-                                            <input type="number" step="any" name="total_area_nozzle" class="form-control" required value="{{ @$request->get('total_area_nozzle') }}" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Koeffisien Discharge (0.95)</label>
-                                            <input type="number" step="any" name="cd" class="form-control" required value="{{ @$request->get('cd') }}" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
                         </div>
 
                     </div>
                 </div>
 
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>

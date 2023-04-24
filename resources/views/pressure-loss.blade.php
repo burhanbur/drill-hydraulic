@@ -7,7 +7,18 @@
             <fieldset class="border p-3 reset">
                 <legend class="reset"><strong>Output Pressure Loss in Surface Equipment</strong></legend>
                 <table class="table">
-                    <tr></tr>
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Pressure Loss inside [psi]</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Surface Equipment</td>
+                            <td>{{ $output1 }}</td>
+                        </tr>
+                    </tbody>
                 </table>
             </fieldset>
 
@@ -95,97 +106,134 @@
             <fieldset class="border p-3 reset">
                 <legend class="reset"><strong>Output Pressure Loss in Bit</strong></legend>
                 <table class="table">
-                    <tr></tr>
+                    <thead>
+                        <tr>
+                            <th>Mud Density</th>
+                            <th>Flow Rate</th>
+                            <th>Total Area Nozzle</th>
+                            <th>Koeffisien Discharge</th>
+                            <th>Bit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ $mud_density }}</td>
+                            <td>{{ $flow_rate }}</td>
+                            <td>{{ $total_area_nozzle }}</td>
+                            <td>{{ $cd }}</td>
+                            <td>{{ $output3 }}</td>
+                        </tr>
+                    </tbody>
                 </table>
             </fieldset>
 
             <fieldset class="border p-3 reset">
                 <legend class="reset"><strong>Output Pressure Loss in Annulus</strong></legend>
                 <table class="table">
-                    <tr>
-                        <th class="text-center" style="width: 20%;">Component</th>
-                        <th class="text-center">Annulus System</th>
-                        <th class="text-center">ID [in]</th>
-                        <th class="text-center">OD [in</th>
-                        <th class="text-center">Length [ft]</th>
-                        <th class="text-center">Drill Pipe</th>
-                        <th class="text-center">Drill Collar</th>
-                    </tr>
-                    @php
-                        $i = 0;
-                    @endphp
-                    @foreach(\App\Helpers\Dropdown::listCasingType() as $k => $v)
-                    <!-- <tr>
-                        <td class="text-center">{{ $v }}</td>
-                        <td>
-                            <select class="form-control" id="annulus_system{{$i}}">
-                                <option value="no">No</option>
-                                <option value="yes">Yes</option>
-                            </select>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr> -->
-                    @php $i++; @endphp
-                    @endforeach
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="width: 20%;">Component</th>
+                            <th class="text-center">Annulus System</th>
+                            <th class="text-center">ID [in]</th>
+                            <th class="text-center">OD [in</th>
+                            <th class="text-center">Length [ft]</th>
+                            <th class="text-center">Drill Pipe</th>
+                            <th class="text-center">Drill Collar</th>
+                            <th class="text-center">Total</th>
+                        </tr>
+                    </thead>
 
-                    <tr>
-                        <td class="text-center">Surface Casing</td>
-                        <td>
-                            <select class="form-control" id="">
-                                <option value="no">No</option>
-                                <option value="yes">Yes</option>
-                            </select>
-                        </td>
-                        <td>13.375</td>
-                        <td>17.5</td>
-                        <td>3000</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">Intermediate Casing</td>
-                        <td>
-                            <select class="form-control" id="">
-                                <option value="no">No</option>
-                                <option value="yes">Yes</option>
-                            </select>
-                        </td>
-                        <td>11</td>
-                        <td>12.25</td>
-                        <td>4500</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">Production Casing</td>
-                        <td>
-                            <select class="form-control" id="">
-                                <option value="yes">Yes</option>
-                            </select>
-                        </td>
-                        <td>8.755</td>
-                        <td>9.625</td>
-                        <td>6500</td>
-                        <td>73,13159102</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">Open Hole</td>
-                        <td>
-                            <select class="form-control" id="">
-                                <option value="yes">Yes</option>
-                            </select>
-                        </td>
-                        <td>8.5</td>
-                        <td>8.5</td>
-                        <td>3000</td>
-                        <td>37,96592195</td>
-                        <td>31,33028949</td>
-                    </tr>
+                    <tbody>
+                        @php
+                            $i = 0;
+                        @endphp
+                        @foreach(\App\Helpers\Dropdown::listCasingType() as $k => $v)
+                        <!-- <tr>
+                            <td class="text-center">{{ $v }}</td>
+                            <td>
+                                <select class="form-control" id="annulus_system{{$i}}">
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr> -->
+                        @php $i++; @endphp
+                        @endforeach
+
+                        <tr>
+                            <td class="text-center">Surface Casing</td>
+                            <td>
+                                <select class="form-control" id="">
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </td>
+                            <td>13.375</td>
+                            <td>17.5</td>
+                            <td>3000</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">Intermediate Casing</td>
+                            <td>
+                                <select class="form-control" id="">
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </td>
+                            <td>11</td>
+                            <td>12.25</td>
+                            <td>4500</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">Production Casing</td>
+                            <td>
+                                <select class="form-control" id="">
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </td>
+                            <td>8.755</td>
+                            <td>9.625</td>
+                            <td>6500</td>
+                            <td>73,13159102</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">Open Hole</td>
+                            <td>
+                                <select class="form-control" id="">
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </td>
+                            <td>8.5</td>
+                            <td>8.5</td>
+                            <td>3000</td>
+                            <td>37,96592195</td>
+                            <td>31,33028949</td>
+                            <td>31,33028949</td>
+                        </tr>
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <th colspan="5" class="text-center">Total</th>
+                            <th>945,6930499</th>
+                            <th>30.363,0190499</th>
+                            <th>30.363,0190499</th>
+                        </tr>
+                    </tfoot>
                 </table>
             </fieldset>
 

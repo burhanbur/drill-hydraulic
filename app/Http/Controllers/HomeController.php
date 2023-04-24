@@ -26,6 +26,163 @@ class HomeController extends Controller
         $xChartValues = [];
         $yChartValues = [];
 
+        // pressure loss
+        // total md
+        $total_measured_depth = $request->get('total_measured_depth');
+
+        // drill string
+        $dp_length = $request->get('dp_length');
+        $dp_outer_diameter = $request->get('dp_outer_diameter');
+        $dp_inner_diameter = $request->get('dp_inner_diameter');
+        $dc_length = $request->get('dc_length');
+        $dc_outer_diameter = $request->get('dc_outer_diameter');
+        $dc_inner_diameter = $request->get('dc_inner_diameter');
+
+        // drilling fluid information
+        $mud_density = $request->get('mud_density'); // densitas fluida
+        $plastic_viscosity = $request->get('plastic_viscosity');
+        $yield_point = $request->get('yield_point');
+        $flow_rate = $request->get('flow_rate');
+
+        // parameter bit
+        $total_area_nozzle = $request->get('total_area_nozzle');
+        $cd = $request->get('cd');
+
+        // surface equipment
+        $set_select = $request->get('set_select');
+        $edpt_select = $request->get('edpt_select');
+        $output_se_edpl = $request->get('output_se_edpl');
+        $output_se_edpi = $request->get('output_se_edpi');
+        $set_standpipe_id = $request->get('set_standpipe_id');
+        $set_standpipe_length = $request->get('set_standpipe_length');
+        $set_rotary_hose_id = $request->get('set_rotary_hose_id');
+        $set_rotary_hose_length = $request->get('set_rotary_hose_length');
+        $set_swivel_id = $request->get('set_swivel_id');
+        $set_swivel_length = $request->get('set_swivel_length');
+        $set_kelly_pipe_id = $request->get('set_kelly_pipe_id');
+        $set_kelly_pipe_length = $request->get('set_kelly_pipe_length');
+        $set_edp_35 = $request->get('set_edp_35');
+        $set_edp_45 = $request->get('set_edp_45');
+        $set_edp_50 = $request->get('set_edp_50');
+
+        $output1 = 0; // surface equipment
+        $output2 = []; // inside drill string
+        $output3 = 0; // bit
+        $output4 = []; // annulus
+        $output5 = []; // circulating system
+
+        // output surface equipment
+        $mud_density = 10.5;
+        $flow_rate = 300;
+        $output_se_edpi = 4.276;
+        $output_se_edpl = 479;
+        $plastic_viscosity = 35;
+        $yield_point = 6;
+        $cd = 0.95;
+        $total_area_nozzle = 0.28;
+
+        if ($mud_density && $flow_rate && $output_se_edpi && $plastic_viscosity && $yield_point) {
+            $condition1 = 928 * ($mud_density * ($flow_rate / (2.448 * $output_se_edpi ** 2)) * $output_se_edpi) / ($plastic_viscosity + (6.66 * $yield_point * $output_se_edpi / ($flow_rate / (2.448 * $output_se_edpi ** 2))));
+            
+            if ($condition1 < 2100) {
+                $output1 = ((($plastic_viscosity * ($flow_rate / (2.448 * $output_se_edpi ** 2)) / 1500 * $output_se_edpi ** 2) + ($yield_point / 225 * $output_se_edpi)) * $output_se_edpi);
+            } elseif ($output_se_edpl) {
+                $output1 = ($mud_density ** 0.75 * ($flow_rate / (2.448 * $output_se_edpi ** 2)) ** 1.75 * $plastic_viscosity ** 0.25 * ($output_se_edpl) / (1800 * $output_se_edpi ** 1.25));
+            }
+        }
+
+        // output drill string
+        
+
+        // output bit
+        if ($mud_density && $flow_rate && $cd && $total_area_nozzle) {
+            $output3 = (double) (8.311 * 10 ** -5 * $mud_density * $flow_rate ** 2 / ($cd ** 2 * $total_area_nozzle ** 2));
+        }
+
+        return view('dashboard', get_defined_vars());
+    }
+
+    public function ajaxCombination(Request $request)
+    {
+        $combination = [];
+        $req = $request->get('combination');
+
+        switch ($req) {
+            case 'combination_1':
+                $combination = \App\Helpers\Dropdown::listCombination1();
+                break;
+            case 'combination_2':
+                $combination = \App\Helpers\Dropdown::listCombination2();
+                break;
+            case 'combination_3':
+                $combination = \App\Helpers\Dropdown::listCombination3();
+                break;
+            case 'combination_4':
+                $combination = \App\Helpers\Dropdown::listCombination4();
+                break;
+
+            default:
+                // $combination = \App\Helpers\Dropdown::listCombination1();
+                break;
+        }
+
+        return response()->json($combination);
+    }
+
+    public function ajaxOutputSurfaceEquipment(Request $request)
+    {
+        $app = app();
+        $returnValue = $app->make('stdClass');
+        $returnValue->length = '0';
+        $returnValue->id = '0';
+
+        $combination = $request->get('combination');
+        $type = $request->get('type');
+
+        switch ($combination) {
+            case 'combination_1':
+                $returnValue->length = \App\Helpers\Dropdown::listCombination1()[$type];
+                break;
+            case 'combination_2':
+                $returnValue->length = \App\Helpers\Dropdown::listCombination2()[$type];
+                break;
+            case 'combination_3':
+                $returnValue->length = \App\Helpers\Dropdown::listCombination3()[$type];
+                break;
+            case 'combination_4':
+                $returnValue->length = \App\Helpers\Dropdown::listCombination4()[$type];
+                break;
+
+            default:
+                # code...
+                break;
+        }
+
+        switch ($type) {
+            case 'edp_35':
+                $returnValue->id = '2,764';
+                break;
+
+            case 'edp_45':
+                $returnValue->id = '3,826';
+                break;
+
+            case 'edp_50':
+                $returnValue->id = '4,276';
+                break;
+            
+            default:
+                // code...
+                break;
+        }
+
+        return response()->json($returnValue);
+    }
+
+    public function unused()
+    {
+
+
         if ($model == 'semua') {
             $yChartValues['fann_data'] = [];
             $yChartValues['power_law'] = [];
@@ -141,65 +298,5 @@ class HomeController extends Controller
         foreach ($n as $ns) {
             $xChartValues[] = round((float) $ns * 1.70333, 3);
         }
-
-        // pressure loss
-
-        // ecd
-
-        return view('dashboard', get_defined_vars());
-    }
-
-    public function ajaxCombination(Request $request)
-    {
-        $combination = [];
-        $req = $request->get('combination');
-
-        switch ($req) {
-            case 'combination_1':
-                $combination = \App\Helpers\Dropdown::listCombination1();
-                break;
-            case 'combination_2':
-                $combination = \App\Helpers\Dropdown::listCombination2();
-                break;
-            case 'combination_3':
-                $combination = \App\Helpers\Dropdown::listCombination3();
-                break;
-            case 'combination_4':
-                $combination = \App\Helpers\Dropdown::listCombination4();
-                break;
-
-            default:
-                // $combination = \App\Helpers\Dropdown::listCombination1();
-                break;
-        }
-
-        return response()->json($combination);
-    }
-
-    public function ajaxOutputSurfaceEquipment(Request $request)
-    {
-        $output = '0';
-        $combination = $request->get('combination');
-        $type = $request->get('type');
-
-        switch ($combination) {
-            case 'combination_1':
-                $output = \App\Helpers\Dropdown::listCombination1()[$type];
-                break;
-            case 'combination_2':
-                $output = \App\Helpers\Dropdown::listCombination2()[$type];
-                break;
-            case 'combination_3':
-                $output = \App\Helpers\Dropdown::listCombination3()[$type];
-                break;
-            case 'combination_4':
-                $output = \App\Helpers\Dropdown::listCombination4()[$type];
-                break;
-
-            default:
-                # code...
-                break;
-        }
-        return response()->json($output);
     }
 }

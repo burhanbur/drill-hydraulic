@@ -210,7 +210,8 @@
                 type: type
             },
             success: function(data) {
-                $('#output_se_edpl').val(data);
+                $('#output_se_edpl').val(data.length);
+                $('#output_se_edpi').val(data.id);
             }
         });
     }
