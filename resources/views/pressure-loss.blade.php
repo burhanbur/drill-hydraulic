@@ -9,14 +9,14 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Component</th>
-                            <th>Pressure Loss inside [psi]</th>
+                            <th class="text-center">Component</th>
+                            <th class="text-center">Pressure Loss inside [psi]</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Surface Equipment</td>
-                            <td>{{ $output1 }}</td>
+                            <td class="text-center">Surface Equipment</td>
+                            <td class="text-center">{{ $output1 }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -28,75 +28,41 @@
                     <thead>
                         <tr>
                             <th class="text-center">Component</th>
-                            <th class="text-center">Length [ft]</th>
+                            <!-- <th class="text-center">Length [ft]</th>
                             <th class="text-center">Measured Depth [ft]</th>
                             <th class="text-center">Outer Diameter [ft]</th>
-                            <th class="text-center">Inner Diameter [ft]</th>
+                            <th class="text-center">Inner Diameter [ft]</th> -->
                             <th class="text-center">Pressure Loss inside [psi]</th>
+                            <th class="text-center">Pressure Loss in Annulus [psi]</th>
                             <th class="text-center">Total</th>
                         </tr>
                     </thead>
                     <tbody>
                         @php $i = 0 @endphp
                         @foreach(\App\Helpers\Dropdown::listComponentPsi() as $k => $v)
-                        <!-- <tr>
-                            <td>{{ $v }}</td>
-                            <td>
-                                {{ @$request->get('psi_length[$i]') }}
-                            </td>
-                            <td>
-                                {{ @$request->get('psi_md[$i]') }}
-                            </td>
-                            <td>
-                                {{ @$request->get('psi_od[$i]') }}
-                            </td>
-                            <td>
-                                {{ @$request->get('psi_id[$i]') }}
-                            </td>
-                            <td></td>
-                        </tr> -->
+                        <tr>
+                            <td class="text-center">{{ $v }}</td>
+
+                            @if ($k == 'drill_pipe')
+                                <td class="text-center">{{ @$output2['drill_pipe'] }}</td>
+                                <td class="text-center">{{ @$output2['drill_pipe_annulus'] }}</td>
+                                <td class="text-center">{{ @$output2['drill_pipe'] + @$output2['drill_pipe_annulus'] }}</td>
+                            @else
+                                <td class="text-center">{{ @$output2['drill_collar'] }}</td>
+                                <td class="text-center">{{ @$output2['drill_collar_annulus'] }}</td>
+                                <td class="text-center">{{ @$output2['drill_collar'] + @$output2['drill_collar_annulus'] }}</td>
+                            @endif
+                        </tr>
                         @php $i++ @endphp
                         @endforeach
-                        <tr>
-                            <td>Drill Pipe</td>
-                            <td>
-                                9500
-                            </td>
-                            <td>
-                                9500
-                            </td>
-                            <td>
-                                4,5
-                            </td>
-                            <td>
-                                3,826
-                            </td>
-                            <td>605,6575537</td>
-                            <td>19.613,9835537</td>
-                        </tr>
-                        <tr>
-                            <td>Drill Collar</td>
-                            <td>
-                                450
-                            </td>
-                            <td>
-                                9950
-                            </td>
-                            <td>
-                                6,75
-                            </td>
-                            <td>
-                                2,25
-                            </td>
-                            <td>340,0354962</td>
-                            <td>10.749,0354962</td>
-                        </tr>
+                        @php $total_output2 = @$output2['drill_pipe'] + @$output2['drill_pipe_annulus'] + @$output2['drill_collar'] + @$output2['drill_collar_annulus'] @endphp
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th colspan="5" class="text-center">Total</th>
-                            <th>945,6930499</th>
-                            <th>30.363,0190499</th>
+                            <th class="text-center">Total</th>
+                            <th class="text-center">{{ @$output2['drill_pipe'] + @$output2['drill_collar'] }}</th>
+                            <th class="text-center">{{ @$output2['drill_pipe_annulus'] + @$output2['drill_collar_annulus'] }}</th>
+                            <th class="text-center">{{ $total_output2 }}</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -108,26 +74,27 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Mud Density</th>
-                            <th>Flow Rate</th>
-                            <th>Total Area Nozzle</th>
-                            <th>Koeffisien Discharge</th>
-                            <th>Bit</th>
+                            <th class="text-center">Mud Density</th>
+                            <th class="text-center">Flow Rate</th>
+                            <th class="text-center">Total Area Nozzle</th>
+                            <th class="text-center">Koeffisien Discharge</th>
+                            <th class="text-center">Bit</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{{ $mud_density }}</td>
-                            <td>{{ $flow_rate }}</td>
-                            <td>{{ $total_area_nozzle }}</td>
-                            <td>{{ $cd }}</td>
-                            <td>{{ $output3 }}</td>
+                            <td class="text-center">{{ $mud_density }}</td>
+                            <td class="text-center">{{ $flow_rate }}</td>
+                            <td class="text-center">{{ $total_area_nozzle }}</td>
+                            <td class="text-center">{{ $cd }}</td>
+                            <td class="text-center">{{ $output3 }}</td>
                         </tr>
                     </tbody>
                 </table>
             </fieldset>
 
-            <fieldset class="border p-3 reset">
+            {{-- 
+            <!-- <fieldset class="border p-3 reset">
                 <legend class="reset"><strong>Output Pressure Loss in Annulus</strong></legend>
                 <table class="table">
                     <thead>
@@ -148,7 +115,7 @@
                             $i = 0;
                         @endphp
                         @foreach(\App\Helpers\Dropdown::listCasingType() as $k => $v)
-                        <!-- <tr>
+                        <tr>
                             <td class="text-center">{{ $v }}</td>
                             <td>
                                 <select class="form-control" id="annulus_system{{$i}}">
@@ -162,7 +129,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                        </tr> -->
+                        </tr>
                         @php $i++; @endphp
                         @endforeach
 
@@ -235,12 +202,16 @@
                         </tr>
                     </tfoot>
                 </table>
-            </fieldset>
+            </fieldset> -->
+            --}}
 
             <fieldset class="border p-3 reset">
                 <legend class="reset"><strong>Output Pressure Loss in Circulating System</strong></legend>
                 <table class="table">
-                    <tr></tr>
+                    <tr>
+                        <th>Pressure Loss in Circulating System [psi]</th>
+                        <td>: {{ $output1 + $total_output2 + $output3 }}</td>
+                    </tr>
                 </table>
             </fieldset>
         </div>

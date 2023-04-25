@@ -19,7 +19,58 @@
                                 <legend class="reset"><strong>Input Measurement Depth</strong></legend>
                                 <div class="form-group">
                                     <label>Total Measured Depth [ft]</label>
-                                    <input type="number" step="any" name="total_measured_depth" class="form-control" required value="{{ @$request->get('total_measured_depth') }}" />
+                                    <input type="number" step="any" name="total_measured_depth" class="form-control" required value="{{ $total_measured_depth }}" />
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="border p-3 reset">
+                                <legend class="reset"><strong>Input Hole Section</strong></legend>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <strong>Casing Shoe</strong>
+                                        <div class="form-group">
+                                            <label>Length [ft]</label>
+                                            <input type="number" step="any" name="cs_length" class="form-control" required value="{{ $cs_length }}">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Measurement Depth Base [ft]</label>
+                                            <input type="number" step="any" name="cs_depth" class="form-control" required value="{{ $cs_depth }}">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Inner Diameter [in]</label>
+                                            <input type="number" step="any" name="cs_inner_diameter" class="form-control" required value="{{ $cs_inner_diameter }}">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Outer Diameter [in]</label>
+                                            <input type="number" step="any" name="cs_outer_diameter" class="form-control" required value="{{ $cs_outer_diameter }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <strong>Open Hole Section</strong>
+                                        <div class="form-group">
+                                            <label>Length [ft]</label>
+                                            <input type="number" step="any" name="ohs_length" class="form-control" required value="{{ $ohs_length }}">
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Measurement Depth Base [ft]</label>
+                                            <input type="number" step="any" name="ohs_depth" class="form-control" required value="{{ $ohs_depth }}">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Inner Diameter [in]</label>
+                                            <input type="number" step="any" name="ohs_inner_diameter" class="form-control" required value="{{ $ohs_inner_diameter }}">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Outer Diameter [in]</label>
+                                            <input type="number" step="any" name="ohs_outer_diameter" class="form-control" required value="{{ $ohs_outer_diameter }}">
+                                        </div>
+                                    </div>
                                 </div>
                             </fieldset>
 
@@ -151,17 +202,17 @@
 
                                         <div class="form-group">
                                             <label>Drill Pipe Length [ft]</label>
-                                            <input type="number" step="any" name="dp_length" class="form-control" required value="{{ @$request->get('dp_length') }}">
+                                            <input type="number" step="any" name="dp_length" class="form-control" required value="{{ $dp_length }}">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Drill Pipe Outer Diameter [in]</label>
-                                            <input type="number" step="any" name="dp_outer_diameter" class="form-control" required value="{{ @$request->get('dp_outer_diameter') }}">
+                                            <input type="number" step="any" name="dp_outer_diameter" class="form-control" required value="{{ $dp_outer_diameter }}">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Drill Pipe Inner Diameter [in]</label>
-                                            <input type="number" step="any" name="dp_inner_diameter" class="form-control" required value="{{ @$request->get('dp_inner_diameter') }}">
+                                            <input type="number" step="any" name="dp_inner_diameter" class="form-control" required value="{{ $dp_inner_diameter }}">
                                         </div>
                                     </div>
 
@@ -169,17 +220,17 @@
 
                                         <div class="form-group">
                                             <label>Drill Collar Length [ft]</label>
-                                            <input type="number" step="any" name="dc_length" class="form-control" required value="{{ @$request->get('dc_length') }}">
+                                            <input type="number" step="any" name="dc_length" class="form-control" required value="{{ $dc_length }}">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Drill Collar Outer Diameter [in]</label>
-                                            <input type="number" step="any" name="dc_outer_diameter" class="form-control" required value="{{ @$request->get('dc_outer_diameter') }}">
+                                            <input type="number" step="any" name="dc_outer_diameter" class="form-control" required value="{{ $dc_outer_diameter }}">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Drill Collar Inner Diameter [in]</label>
-                                            <input type="number" step="any" name="dc_inner_diameter" class="form-control" required value="{{ @$request->get('dc_inner_diameter') }}">
+                                            <input type="number" step="any" name="dc_inner_diameter" class="form-control" required value="{{ $dc_inner_diameter }}">
                                         </div>
                                     </div>
                                 </div>
@@ -193,34 +244,34 @@
 
                                         <div class="form-group">
                                             <label>Mud Density [ppg]</label>
-                                            <input type="number" step="any" name="mud_density" class="form-control" required value="{{ @$request->get('mud_density') }}" />
+                                            <input type="number" step="any" name="mud_density" class="form-control" required value="{{ $mud_density }}" />
                                         </div>
 
                                         <div class="form-group">
                                             <label>Plastic Viscosity (μp) [cP]</label>
-                                            <input type="number" step="any" name="plastic_viscosity" class="form-control" required value="{{ @$request->get('plastic_viscosity') }}" />
+                                            <input type="number" step="any" name="plastic_viscosity" class="form-control" required value="{{ $plastic_viscosity }}" />
                                         </div>
 
                                         <div class="form-group">
                                             <label>Total Area Nozzle [inch²]</label>
-                                            <input type="number" step="any" name="total_area_nozzle" class="form-control" required value="{{ @$request->get('total_area_nozzle') }}" />
+                                            <input type="number" step="any" name="total_area_nozzle" class="form-control" required value="{{ $total_area_nozzle }}" />
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Yield Point [lb/100 ft2]</label>
-                                            <input type="number" step="any" name="yield_point" class="form-control" required value="{{ @$request->get('yield_point') }}" />
+                                            <input type="number" step="any" name="yield_point" class="form-control" required value="{{ $yield_point }}" />
                                         </div>
 
                                         <div class="form-group">
                                             <label>Flow Rate [gpm]</label>
-                                            <input type="number" step="any" name="flow_rate" class="form-control" required value="{{ @$request->get('flow_rate') }}" />
+                                            <input type="number" step="any" name="flow_rate" class="form-control" required value="{{ $flow_rate }}" />
                                         </div>
 
                                         <div class="form-group">
                                             <label>Koeffisien Discharge [0.95]</label>
-                                            <input type="number" step="any" name="cd" class="form-control" required value="{{ @$request->get('cd') }}" />
+                                            <input type="number" step="any" name="cd" class="form-control" required value="{{ $cd }}" />
                                         </div>
                                     </div>
                                 </div>
@@ -262,7 +313,7 @@
                                     <br>
                                     <select name="set_select" class="form-control" id="set-select" style="width: 100%;">
                                         @foreach(\App\Helpers\Dropdown::listCombinations() as $k => $v)
-                                        <option @php echo ($k==@$request->get('set_select')) ? 'selected' : '' @endphp value="{{ $k }}">{{ $v }}</option>
+                                        <option @php echo ($k == $set_select) ? 'selected' : '' @endphp value="{{ $k }}">{{ $v }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -272,7 +323,7 @@
                                     <br>
                                     <select name="edpt_select" class="form-control" id="edpt-select" style="width: 100%;">
                                         @foreach(\App\Helpers\Dropdown::listDrillPipe() as $k => $v)
-                                        <option @php echo ($k==@$request->get('edpt_select')) ? 'selected' : '' @endphp value="{{ $k }}">{{ $v }}</option>
+                                        <option @php echo ($k == $edpt_select) ? 'selected' : '' @endphp value="{{ $k }}">{{ $v }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -280,11 +331,11 @@
                                 <div class="hidden">
                                     <div class="form-group">
                                         <label>Equivalent Drill Pipe Length</label>
-                                        <input type="text" name="output_se_edpl" id="output_se_edpl" class="form-control" readonly>
+                                        <input type="number" name="output_se_edpl" id="output_se_edpl" class="form-control" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label>Equivalent Drill Pipe ID</label>
-                                        <input type="text" name="output_se_edpi" id="output_se_edpi" class="form-control" readonly>
+                                        <input type="number" name="output_se_edpi" id="output_se_edpi" class="form-control" readonly>
                                     </div>
 
                                     <div class="row">
@@ -292,44 +343,44 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Standpipe ID [in]</label>
-                                                <input type="text" name="set_standpipe_id" class="form-control" value="" id="set_standpipe_id" readonly>
+                                                <input type="number" name="set_standpipe_id" class="form-control" value="" id="set_standpipe_id" readonly>
                                             </div>
 
                                             <div class="form-group">
                                                 <label>Standpipe Length [ft]</label>
-                                                <input type="text" name="set_standpipe_length" class="form-control" value="" id="set_standpipe_length" readonly>
+                                                <input type="number" name="set_standpipe_length" class="form-control" value="" id="set_standpipe_length" readonly>
                                             </div>
 
                                             <div class="form-group">
                                                 <label>Rotary Hose ID [in]</label>
-                                                <input type="text" name="set_rotary_hose_id" class="form-control" value="" id="set_rotary_hose_id" readonly>
+                                                <input type="number" name="set_rotary_hose_id" class="form-control" value="" id="set_rotary_hose_id" readonly>
                                             </div>
 
                                             <div class="form-group">
                                                 <label>Rotary Hose Length [ft]</label>
-                                                <input type="text" name="set_rotary_hose_length" class="form-control" value="" id="set_rotary_hose_length" readonly>
+                                                <input type="number" name="set_rotary_hose_length" class="form-control" value="" id="set_rotary_hose_length" readonly>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Swivel ID [in]</label>
-                                                <input type="text" name="set_swivel_id" class="form-control" value="" id="set_swivel_id" readonly>
+                                                <input type="number" name="set_swivel_id" class="form-control" value="" id="set_swivel_id" readonly>
                                             </div>
 
                                             <div class="form-group">
                                                 <label>Swivel Length [ft]</label>
-                                                <input type="text" name="set_swivel_length" class="form-control" value="" id="set_swivel_length" readonly>
+                                                <input type="number" name="set_swivel_length" class="form-control" value="" id="set_swivel_length" readonly>
                                             </div>
 
                                             <div class="form-group">
                                                 <label>Kelly Pipe ID [in]</label>
-                                                <input type="text" name="set_kelly_pipe_id" class="form-control" value="" id="set_kelly_pipe_id" readonly>
+                                                <input type="number" name="set_kelly_pipe_id" class="form-control" value="" id="set_kelly_pipe_id" readonly>
                                             </div>
 
                                             <div class="form-group">
                                                 <label>Kelly Pipe Length [ft]</label>
-                                                <input type="text" name="set_kelly_pipe_length" class="form-control" value="" id="set_kelly_pipe_length" readonly>
+                                                <input type="number" name="set_kelly_pipe_length" class="form-control" value="" id="set_kelly_pipe_length" readonly>
                                             </div>
                                         </div>
 
@@ -337,17 +388,17 @@
 
                                     <div class="form-group">
                                         <label>Equivalent Drill Pipe 3.5", 13.3 lb/ft [ft]</label>
-                                        <input type="text" name="set_edp_35" class="form-control" value="" id="set_edp_35" readonly>
+                                        <input type="number" name="set_edp_35" class="form-control" value="" id="set_edp_35" readonly>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Equivalent Drill Pipe 4.5", 16.6 lb/ft [ft]</label>
-                                        <input type="text" name="set_edp_45" class="form-control" value="" id="set_edp_45" readonly>
+                                        <input type="number" name="set_edp_45" class="form-control" value="" id="set_edp_45" readonly>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Equivalent Drill Pipe 5", 19.5 lb/ft [ft]</label>
-                                        <input type="text" name="set_edp_50" class="form-control" value="" id="set_edp_50" readonly>
+                                        <input type="number" name="set_edp_50" class="form-control" value="" id="set_edp_50" readonly>
                                     </div>
                                 </div>
                             </fieldset>
