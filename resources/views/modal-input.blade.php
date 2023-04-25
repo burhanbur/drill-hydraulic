@@ -19,7 +19,7 @@
                                 <legend class="reset"><strong>Input Measurement Depth</strong></legend>
                                 <div class="form-group">
                                     <label>Total Measured Depth [ft]</label>
-                                    <input type="number" step="any" name="total_measured_depth" class="form-control" required value="{{ $total_measured_depth }}" />
+                                    <input type="number" step="any" name="total_measured_depth" class="form-control" required value="{{ ($total_measured_depth) ? $total_measured_depth : '' }}" placeholder="0" />
                                 </div>
                             </fieldset>
 
@@ -30,22 +30,22 @@
                                         <strong>Casing Shoe</strong>
                                         <div class="form-group">
                                             <label>Length [ft]</label>
-                                            <input type="number" step="any" name="cs_length" class="form-control" required value="{{ $cs_length }}">
+                                            <input type="number" step="any" name="cs_length" class="form-control" required value="{{ ($cs_length) ? $cs_length : '' }}" placeholder="0">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Measurement Depth Base [ft]</label>
-                                            <input type="number" step="any" name="cs_depth" class="form-control" required value="{{ $cs_depth }}">
+                                            <input type="number" step="any" name="cs_depth" class="form-control" required value="{{ ($cs_depth) ? $cs_depth : '' }}" placeholder="0">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Inner Diameter [in]</label>
-                                            <input type="number" step="any" name="cs_inner_diameter" class="form-control" required value="{{ $cs_inner_diameter }}">
+                                            <input type="number" step="any" name="cs_inner_diameter" class="form-control" required value="{{ ($cs_inner_diameter) ? $cs_inner_diameter : '' }}" placeholder="0">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Outer Diameter [in]</label>
-                                            <input type="number" step="any" name="cs_outer_diameter" class="form-control" required value="{{ $cs_outer_diameter }}">
+                                            <input type="number" step="any" name="cs_outer_diameter" class="form-control" required value="{{ ($cs_outer_diameter) ? $cs_outer_diameter : '' }}" placeholder="0">
                                         </div>
                                     </div>
 
@@ -53,22 +53,22 @@
                                         <strong>Open Hole Section</strong>
                                         <div class="form-group">
                                             <label>Length [ft]</label>
-                                            <input type="number" step="any" name="ohs_length" class="form-control" required value="{{ $ohs_length }}">
+                                            <input type="number" step="any" name="ohs_length" class="form-control" required value="{{ ($ohs_length) ? $ohs_length : '' }}" placeholder="0">
                                         </div>
                                         
                                         <div class="form-group">
                                             <label>Measurement Depth Base [ft]</label>
-                                            <input type="number" step="any" name="ohs_depth" class="form-control" required value="{{ $ohs_depth }}">
+                                            <input type="number" step="any" name="ohs_depth" class="form-control" required value="{{ ($ohs_depth) ? $ohs_depth : '' }}" placeholder="0">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Inner Diameter [in]</label>
-                                            <input type="number" step="any" name="ohs_inner_diameter" class="form-control" required value="{{ $ohs_inner_diameter }}">
+                                            <input type="number" step="any" name="ohs_inner_diameter" class="form-control" required value="{{ ($ohs_inner_diameter) ? $ohs_inner_diameter : '' }}" placeholder="0">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Outer Diameter [in]</label>
-                                            <input type="number" step="any" name="ohs_outer_diameter" class="form-control" required value="{{ $ohs_outer_diameter }}">
+                                            <input type="number" step="any" name="ohs_outer_diameter" class="form-control" required value="{{ ($ohs_outer_diameter) ? $ohs_outer_diameter : '' }}" placeholder="0">
                                         </div>
                                     </div>
                                 </div>
@@ -202,17 +202,17 @@
 
                                         <div class="form-group">
                                             <label>Drill Pipe Length [ft]</label>
-                                            <input type="number" step="any" name="dp_length" class="form-control" required value="{{ $dp_length }}">
+                                            <input type="number" step="any" name="dp_length" class="form-control" required value="{{ ($dp_length) ? $dp_length : '' }}" placeholder="0">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Drill Pipe Outer Diameter [in]</label>
-                                            <input type="number" step="any" name="dp_outer_diameter" class="form-control" required value="{{ $dp_outer_diameter }}">
+                                            <input type="number" step="any" name="dp_outer_diameter" class="form-control" required value="{{ ($dp_outer_diameter) ? $dp_outer_diameter : '' }}" placeholder="0">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Drill Pipe Inner Diameter [in]</label>
-                                            <input type="number" step="any" name="dp_inner_diameter" class="form-control" required value="{{ $dp_inner_diameter }}">
+                                            <input type="number" step="any" name="dp_inner_diameter" class="form-control" required value="{{ ($dp_inner_diameter) ? $dp_inner_diameter : '' }}" placeholder="0">
                                         </div>
                                     </div>
 
@@ -220,17 +220,17 @@
 
                                         <div class="form-group">
                                             <label>Drill Collar Length [ft]</label>
-                                            <input type="number" step="any" name="dc_length" class="form-control" required value="{{ $dc_length }}">
+                                            <input type="number" step="any" name="dc_length" class="form-control" required value="{{ ($dc_length) ? $dc_length : '' }}" placeholder="0">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Drill Collar Outer Diameter [in]</label>
-                                            <input type="number" step="any" name="dc_outer_diameter" class="form-control" required value="{{ $dc_outer_diameter }}">
+                                            <input type="number" step="any" name="dc_outer_diameter" class="form-control" required value="{{ ($dc_outer_diameter) ? $dc_outer_diameter : '' }}" placeholder="0">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Drill Collar Inner Diameter [in]</label>
-                                            <input type="number" step="any" name="dc_inner_diameter" class="form-control" required value="{{ $dc_inner_diameter }}">
+                                            <input type="number" step="any" name="dc_inner_diameter" class="form-control" required value="{{ ($dc_inner_diameter) ? $dc_inner_diameter : '' }}" placeholder="0">
                                         </div>
                                     </div>
                                 </div>
@@ -244,34 +244,34 @@
 
                                         <div class="form-group">
                                             <label>Mud Density [ppg]</label>
-                                            <input type="number" step="any" name="mud_density" class="form-control" required value="{{ $mud_density }}" />
+                                            <input type="number" step="any" name="mud_density" class="form-control" required value="{{ ($mud_density) ? $mud_density : '' }}" placeholder="0" />
                                         </div>
 
                                         <div class="form-group">
                                             <label>Plastic Viscosity (μp) [cP]</label>
-                                            <input type="number" step="any" name="plastic_viscosity" class="form-control" required value="{{ $plastic_viscosity }}" />
+                                            <input type="number" step="any" name="plastic_viscosity" class="form-control" required value="{{ ($plastic_viscosity) ? $plastic_viscosity : '' }}" placeholder="0" />
                                         </div>
 
                                         <div class="form-group">
                                             <label>Total Area Nozzle [inch²]</label>
-                                            <input type="number" step="any" name="total_area_nozzle" class="form-control" required value="{{ $total_area_nozzle }}" />
+                                            <input type="number" step="any" name="total_area_nozzle" class="form-control" required value="{{ ($total_area_nozzle) ? $total_area_nozzle : '' }}" placeholder="0" />
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Yield Point [lb/100 ft2]</label>
-                                            <input type="number" step="any" name="yield_point" class="form-control" required value="{{ $yield_point }}" />
+                                            <input type="number" step="any" name="yield_point" class="form-control" required value="{{ ($yield_point) ? $yield_point : '' }}" placeholder="0" />
                                         </div>
 
                                         <div class="form-group">
                                             <label>Flow Rate [gpm]</label>
-                                            <input type="number" step="any" name="flow_rate" class="form-control" required value="{{ $flow_rate }}" />
+                                            <input type="number" step="any" name="flow_rate" class="form-control" required value="{{ ($flow_rate) ? $flow_rate : '' }}" placeholder="0" />
                                         </div>
 
                                         <div class="form-group">
                                             <label>Koeffisien Discharge [0.95]</label>
-                                            <input type="number" step="any" name="cd" class="form-control" required value="{{ $cd }}" />
+                                            <input type="number" step="any" name="cd" class="form-control" required value="{{ ($cd) ? $cd : '' }}" placeholder="0" />
                                         </div>
                                     </div>
                                 </div>
