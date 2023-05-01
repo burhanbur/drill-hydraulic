@@ -25,4 +25,18 @@ class PressureLossController extends Controller
 
         return response()->json($returnValue);
     }
+
+    public function combination()
+    {
+        $returnValue = \App\Helpers\Dropdown::listCombinations();
+
+        return response()->json($returnValue);
+    }
+
+    public function drillPipe()
+    {
+        $returnValue = \App\Helpers\Dropdown::listDrillPipe();
+
+        return response()->json($returnValue);
+    }
 }

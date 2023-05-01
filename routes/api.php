@@ -25,4 +25,6 @@ use App\Http\Controllers\Api\EquivalentCirculatingController;
 
 Route::post('rheological', [RheologicalController::class, 'index'])->name('rheological');
 Route::post('pressure-loss', [PressureLossController::class, 'index'])->name('pressure.loss');
+Route::get('dropdown-combination', [PressureLossController::class, 'combination'])->name('pressure.loss.combination');
+Route::get('dropdown-drill-pipe', [PressureLossController::class, 'drillPipe'])->name('pressure.loss.drill.pipe');
 // Route::get('ecd', [EquivalentCirculatingController::class, 'index'])->name('ecd');
