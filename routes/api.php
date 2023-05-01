@@ -23,6 +23,6 @@ use App\Http\Controllers\Api\EquivalentCirculatingController;
 // });
 
 
-Route::get('rheological', [RheologicalController::class, 'index'])->name('rheological');
-Route::get('pressure-loss', [PressureLossController::class, 'index'])->name('pressure.loss');
-Route::get('ecd', [EquivalentCirculatingController::class, 'index'])->name('ecd');
+Route::post('rheological', [RheologicalController::class, 'index'])->name('rheological');
+Route::post('pressure-loss', [PressureLossController::class, 'index'])->name('pressure.loss');
+// Route::get('ecd', [EquivalentCirculatingController::class, 'index'])->name('ecd');
