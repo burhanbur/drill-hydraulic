@@ -66,4 +66,54 @@ class PressureLossController extends Controller
 
         return response()->json($combination);
     }
+
+    public function ajaxOutputSurface(Request $request)
+    {
+        $app = app();
+        $returnValue = $app->make('stdClass');
+        $returnValue->length = '0';
+        $returnValue->id = '0';
+
+        $combination = $request->get('combination');
+        $type = $request->get('type');
+
+        switch ($combination) {
+            case 'combination_1':
+                $returnValue->length = \App\Helpers\Dropdown::listCombination1()[$type];
+                break;
+            case 'combination_2':
+                $returnValue->length = \App\Helpers\Dropdown::listCombination2()[$type];
+                break;
+            case 'combination_3':
+                $returnValue->length = \App\Helpers\Dropdown::listCombination3()[$type];
+                break;
+            case 'combination_4':
+                $returnValue->length = \App\Helpers\Dropdown::listCombination4()[$type];
+                break;
+
+            default:
+                # code...
+                break;
+        }
+
+        switch ($type) {
+            case 'edp_35':
+                $returnValue->id = '2.764';
+                break;
+
+            case 'edp_45':
+                $returnValue->id = '3.826';
+                break;
+
+            case 'edp_50':
+                $returnValue->id = '4.276';
+                break;
+            
+            default:
+                // code...
+                break;
+        }
+
+        return response()->json($returnValue);
+    }
 }
