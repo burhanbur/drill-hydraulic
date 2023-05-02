@@ -19,7 +19,7 @@ class PressureLossController extends Controller
     public function index(Request $request)
     {
         $returnValue = [];
-        
+
         $logic = new PressureLossService;
         $returnValue = $logic->calculate($request);
 
@@ -38,5 +38,32 @@ class PressureLossController extends Controller
         $returnValue = \App\Helpers\Dropdown::listDrillPipe();
 
         return response()->json($returnValue);
+    }
+
+    public function ajaxCombination(Request $request)
+    {
+        $combination = [];
+        $req = $request->get('combination');
+
+        switch ($req) {
+            case 'combination_1':
+                $combination = \App\Helpers\Dropdown::listCombination1();
+                break;
+            case 'combination_2':
+                $combination = \App\Helpers\Dropdown::listCombination2();
+                break;
+            case 'combination_3':
+                $combination = \App\Helpers\Dropdown::listCombination3();
+                break;
+            case 'combination_4':
+                $combination = \App\Helpers\Dropdown::listCombination4();
+                break;
+
+            default:
+                // $combination = \App\Helpers\Dropdown::listCombination1();
+                break;
+        }
+
+        return response()->json($combination);
     }
 }
