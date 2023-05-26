@@ -74,19 +74,21 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th class="text-center">Mud Density [ppg]</th>
+                            <!-- <th class="text-center">Mud Density [ppg]</th>
                             <th class="text-center">Flow Rate [gpm]</th>
                             <th class="text-center">Total Area Nozzle [inch²]</th>
-                            <th class="text-center">Koeffisien Discharge [0.95]</th>
-                            <th class="text-center">Bit [psi]</th>
+                            <th class="text-center">Koeffisien Discharge [0.95]</th> -->
+                            <th class="text-center">Component</th>
+                            <th class="text-center">Pressure Loss inside [psi]</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="text-center">{{ $mud_density }}</td>
+                            <!-- <td class="text-center">{{ $mud_density }}</td>
                             <td class="text-center">{{ $flow_rate }}</td>
                             <td class="text-center">{{ $total_area_nozzle }}</td>
-                            <td class="text-center">{{ $cd }}</td>
+                            <td class="text-center">{{ $cd }}</td> -->
+                            <td class="text-center">Bit</td>
                             <th class="text-center">{{ round($output3, 2) }}</th>
                         </tr>
                     </tbody>
@@ -207,7 +209,7 @@
                 <legend class="reset"><strong>Output Pressure Loss in Circulating System</strong></legend>
                 <table class="table">
                     <tr>
-                        <th>Pressure Loss in Circulating System [psi]</th>
+                        <th>Total Pressure Loss in Circulating System [psi]</th>
                         <th>{{ round(($output1 + (@$output2['drill_pipe'] + @$output2['drill_collar']) + (@$output2['drill_pipe_casing_annulus'] + @$output2['drill_pipe_annulus'] + @$output2['drill_collar_annulus']) + $output3), 2) }}</th>
                     </tr>
                 </table>
