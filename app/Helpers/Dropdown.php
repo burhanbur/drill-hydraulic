@@ -182,8 +182,8 @@ class Dropdown
 	public static function listCasingType()
 	{
 		return [
-			'surface_casing' => 'Surface Casing',
-			'intermediate_casing' => 'Intermediate Casing',
+			// 'surface_casing' => 'Surface Casing',
+			// 'intermediate_casing' => 'Intermediate Casing',
 			'production_casing' => 'Production Casing',
 			'open_hole' => 'Open Hole',
 		];

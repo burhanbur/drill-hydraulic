@@ -121,42 +121,57 @@ class HomeController extends Controller
             }
         }
 
-        // echo "<pre>";
-        // var_dump($mud_density);
-        // var_dump($flow_rate);
-        // var_dump($dp_outer_diameter);
-        // var_dump($plastic_viscosity);
-        // var_dump($yield_point);
-        // var_dump($dp_length);
-        // var_dump($cs_length);
-        // var_dump($ohs_inner_diameter);
-
-        // var_dump($mud_density && $flow_rate && $dp_outer_diameter && $plastic_viscosity && $yield_point && $dp_length && $cs_length && $ohs_inner_diameter);
-
         if ($mud_density && $flow_rate && $dp_outer_diameter && $plastic_viscosity && $yield_point && $dp_length && $cs_length && $ohs_inner_diameter) {
             $condition_dp_annulus = 757 * ($mud_density * ($flow_rate / (2.448 * ($ohs_inner_diameter ** 2 - $dp_outer_diameter ** 2))) * ($ohs_inner_diameter - $dp_outer_diameter)) / ($plastic_viscosity + (5 * $yield_point * ($ohs_inner_diameter - $dp_outer_diameter) / ($flow_rate / (2.448 * ($ohs_inner_diameter ** 2 - $dp_outer_diameter ** 2)))));
 
             if ($condition_dp_annulus < 2100) {
-                $output2['drill_pipe_annulus'] = ((($plastic_viscosity * ($flow_rate / (2.448 * ($ohs_inner_diameter ** 2 - $dp_outer_diameter ** 2)))) / 1000 * ($ohs_inner_diameter - $dp_outer_diameter) ** 2) + ($yield_point / (200 * ($ohs_inner_diameter - $dp_outer_diameter))) * ($dp_length - $cs_length));
+                $output2['drill_pipe_annulus'] = ((($plastic_viscosity * ($flow_rate / (2.448 * ($ohs_inner_diameter ** 2 - $dp_outer_diameter ** 2)))) / (1000 * ($ohs_inner_diameter - $dp_outer_diameter) ** 2)) + ($yield_point / (200 * ($ohs_inner_diameter - $dp_outer_diameter)))) * ($dp_length - $cs_length);
             } else {
-                $output2['drill_pipe_annulus'] = ($mud_density ** 0.75 * ($flow_rate / (2.448 * ($ohs_inner_diameter ** 2 - $dp_outer_diameter ** 2)) ** 1.75 * $plastic_viscosity ** 0.25 * ($dp_length - $cs_length) / (1396 * ($ohs_inner_diameter - $dp_outer_diameter) ** 1.25)));
+                $output2['drill_pipe_annulus'] = ($mud_density ** 0.75 * ($flow_rate / (2.448 * ($ohs_inner_diameter ** 2 - $dp_outer_diameter ** 2)) ** 1.75 * $plastic_viscosity ** 0.25 / (1396 * ($ohs_inner_diameter - $dp_outer_diameter) ** 1.25))) * ($dp_length - $cs_length);
             }
         }
 
-        // var_dump($mud_density && $flow_rate && $dc_outer_diameter && $plastic_viscosity && $yield_point && $dc_length && $ohs_inner_diameter && $cs_depth);
+        // drill pipe casing annulus
+        if ($mud_density && $flow_rate && $dp_outer_diameter && $plastic_viscosity && $yield_point && $dp_length && $cs_length && $cs_inner_diameter) {
+            $condition_dp_annulus = 757 * ($mud_density * ($flow_rate / (2.448 * ($cs_inner_diameter ** 2 - $dp_outer_diameter ** 2))) * ($cs_inner_diameter - $dp_outer_diameter)) / ($plastic_viscosity + (5 * $yield_point * ($cs_inner_diameter - $dp_outer_diameter) / ($flow_rate / (2.448 * ($cs_inner_diameter ** 2 - $dp_outer_diameter ** 2)))));
 
-        if ($mud_density && $flow_rate && $dc_outer_diameter && $plastic_viscosity && $yield_point && $dc_length && $ohs_inner_diameter && $cs_depth) {
+            if ($condition_dp_annulus < 2100) {
+                $output2['drill_pipe_casing_annulus'] = ((($plastic_viscosity * ($flow_rate / (2.448 * ($cs_inner_diameter ** 2 - $dp_outer_diameter ** 2)))) / (1000 * ($cs_inner_diameter - $dp_outer_diameter) ** 2)) + ($yield_point / (200 * ($cs_inner_diameter - $dp_outer_diameter)))) * ($cs_length);
+            } else {
+                $output2['drill_pipe_casing_annulus'] = ($mud_density ** 0.75 * ($flow_rate / (2.448 * ($cs_inner_diameter ** 2 - $dp_outer_diameter ** 2)) ** 1.75 * $plastic_viscosity ** 0.25 / (1396 * ($cs_inner_diameter - $dp_outer_diameter) ** 1.25))) * ($cs_length);
+            }
+        }
+
+        // drill collar open hole annulus
+        // echo "<pre>";
+        // var_dump($mud_density);
+        // var_dump($flow_rate);
+        // var_dump($dc_outer_diameter);
+        // var_dump($plastic_viscosity);
+        // var_dump($yield_point);
+        // var_dump($dc_length);
+        // var_dump($ohs_inner_diameter);
+        // var_dump($ohs_outer_diameter);
+        // die();
+        if ($mud_density && $flow_rate && $dc_outer_diameter && $plastic_viscosity && $yield_point && $dc_length && $ohs_inner_diameter) {
             $condition_dc_annulus = 757 * ($mud_density * ($flow_rate / (2.448 * ($ohs_inner_diameter ** 2 - $dc_outer_diameter ** 2))) * ($ohs_inner_diameter - $dc_outer_diameter)) / ($plastic_viscosity + (5 * $yield_point * ($ohs_inner_diameter - $dc_outer_diameter) / ($flow_rate / (2.448 * ($ohs_inner_diameter ** 2 - $dc_outer_diameter ** 2)))));
 
             if ($condition_dc_annulus < 2100) {
-                $output2['drill_collar_annulus'] = ((($plastic_viscosity * ($flow_rate / (2.448 * ($ohs_inner_diameter ** 2 - $dc_outer_diameter ** 2)))) / 1000 * ($ohs_inner_diameter - $dc_outer_diameter) ** 2) + ($yield_point / (200 * ($ohs_inner_diameter - $dc_outer_diameter))) * ($dc_length));
+                $output2['drill_collar_annulus'] = ((($plastic_viscosity * ($flow_rate / (2.448 * ($ohs_inner_diameter ** 2 - $dc_outer_diameter ** 2)))) / (1000 * ($ohs_inner_diameter - $dc_outer_diameter) ** 2)) + ($yield_point / (200 * ($ohs_inner_diameter - $dc_outer_diameter)))) * ($dc_length);
             } else {
-                $output2['drill_collar_annulus'] = ($mud_density ** 0.75 * ($flow_rate / (2.448 * ($ohs_inner_diameter ** 2 - $dc_outer_diameter ** 2)) ** 1.75 * $plastic_viscosity ** 0.25 * ($dc_length - $cs_depth) / (1396 * ($ohs_inner_diameter - $dc_outer_diameter) ** 1.25)));
+                $output2['drill_collar_annulus'] = ($mud_density ** 0.75 * ($flow_rate / (2.448 * ($ohs_inner_diameter ** 2 - $dc_outer_diameter ** 2)) ** 1.75 * $plastic_viscosity ** 0.25 / (1396 * ($ohs_inner_diameter - $dc_outer_diameter) ** 1.25))) * ($dc_length);
             }
         }
 
-        // var_dump($output2);
-        // die();
+        // if ($mud_density && $flow_rate && $dc_outer_diameter && $plastic_viscosity && $yield_point && $dc_length && $ohs_inner_diameter && $cs_depth) {
+        //     $condition_dc_annulus = 757 * ($mud_density * ($flow_rate / (2.448 * ($ohs_inner_diameter ** 2 - $dc_outer_diameter ** 2))) * ($ohs_inner_diameter - $dc_outer_diameter)) / ($plastic_viscosity + (5 * $yield_point * ($ohs_inner_diameter - $dc_outer_diameter) / ($flow_rate / (2.448 * ($ohs_inner_diameter ** 2 - $dc_outer_diameter ** 2)))));
+
+        //     if ($condition_dc_annulus < 2100) {
+        //         $output2['drill_collar_annulus'] = ((($plastic_viscosity * ($flow_rate / (2.448 * ($ohs_inner_diameter ** 2 - $dc_outer_diameter ** 2)))) / 1000 * ($ohs_inner_diameter - $dc_outer_diameter) ** 2) + ($yield_point / (200 * ($ohs_inner_diameter - $dc_outer_diameter))) * ($dc_length));
+        //     } else {
+        //         $output2['drill_collar_annulus'] = ($mud_density ** 0.75 * ($flow_rate / (2.448 * ($ohs_inner_diameter ** 2 - $dc_outer_diameter ** 2)) ** 1.75 * $plastic_viscosity ** 0.25 * ($dc_length - $cs_depth) / (1396 * ($ohs_inner_diameter - $dc_outer_diameter) ** 1.25)));
+        //     }
+        // }
 
         // output bit
         if ($mud_density && $flow_rate && $cd && $total_area_nozzle) {

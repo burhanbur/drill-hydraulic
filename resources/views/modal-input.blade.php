@@ -33,20 +33,20 @@
                                             <input type="number" step="any" name="cs_length" class="form-control" required value="{{ ($cs_length) ? $cs_length : '' }}" placeholder="0">
                                         </div>
 
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <label>Measurement Depth Base [ft]</label>
                                             <input type="number" step="any" name="cs_depth" class="form-control" required value="{{ ($cs_depth) ? $cs_depth : '' }}" placeholder="0">
-                                        </div>
+                                        </div> -->
 
                                         <div class="form-group">
                                             <label>Inner Diameter [in]</label>
                                             <input type="number" step="any" name="cs_inner_diameter" class="form-control" required value="{{ ($cs_inner_diameter) ? $cs_inner_diameter : '' }}" placeholder="0">
                                         </div>
 
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <label>Outer Diameter [in]</label>
                                             <input type="number" step="any" name="cs_outer_diameter" class="form-control" required value="{{ ($cs_outer_diameter) ? $cs_outer_diameter : '' }}" placeholder="0">
-                                        </div>
+                                        </div> -->
                                     </div>
 
                                     <div class="col-md-6">
@@ -56,20 +56,20 @@
                                             <input type="number" step="any" name="ohs_length" class="form-control" required value="{{ ($ohs_length) ? $ohs_length : '' }}" placeholder="0">
                                         </div>
                                         
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <label>Measurement Depth Base [ft]</label>
                                             <input type="number" step="any" name="ohs_depth" class="form-control" required value="{{ ($ohs_depth) ? $ohs_depth : '' }}" placeholder="0">
-                                        </div>
+                                        </div> -->
 
                                         <div class="form-group">
                                             <label>Inner Diameter [in]</label>
                                             <input type="number" step="any" name="ohs_inner_diameter" class="form-control" required value="{{ ($ohs_inner_diameter) ? $ohs_inner_diameter : '' }}" placeholder="0">
                                         </div>
 
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <label>Outer Diameter [in]</label>
                                             <input type="number" step="any" name="ohs_outer_diameter" class="form-control" required value="{{ ($ohs_outer_diameter) ? $ohs_outer_diameter : '' }}" placeholder="0">
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </fieldset>
@@ -111,9 +111,9 @@
                                     @php $i++; @endphp
                                     @endforeach
                                 </table>
-                            </fieldset>
+                            </fieldset> -->
 
-                            <fieldset class="border p-3 reset">
+                            <!-- <fieldset class="border p-3 reset">
                                 <legend class="reset"><strong>Casing Data Information</strong></legend>
                                 <div class="form-group">
                                     <label>Casing Type</label>
