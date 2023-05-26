@@ -16,7 +16,7 @@
                     <tbody>
                         <tr>
                             <td class="text-center">Surface Equipment</td>
-                            <td class="text-center">{{ round($output1, 2) }}</td>
+                            <th class="text-center">{{ round($output1, 2) }}</th>
                         </tr>
                     </tbody>
                 </table>
@@ -44,11 +44,11 @@
                             <td class="text-center">{{ $v }}</td>
 
                             @if ($k == 'drill_pipe')
-                                <td class="text-center">{{ @round($output2['drill_pipe'], 2) }}</td>
+                                <td class="text-center">{{ round(@$output2['drill_pipe'], 2) }}</td>
                                <!--  <td class="text-center">{{ @$output2['drill_pipe_annulus'] }}</td>
                                 <td class="text-center">{{ @$output2['drill_pipe'] + @$output2['drill_pipe_annulus'] }}</td> -->
                             @else
-                                <td class="text-center">{{ @round($output2['drill_collar'], 2) }}</td>
+                                <td class="text-center">{{ round(@$output2['drill_collar'], 2) }}</td>
                                <!--  <td class="text-center">{{ @$output2['drill_collar_annulus'] }}</td>
                                 <td class="text-center">{{ @$output2['drill_collar'] + @$output2['drill_collar_annulus'] }}</td> -->
                             @endif
@@ -87,7 +87,7 @@
                             <td class="text-center">{{ $flow_rate }}</td>
                             <td class="text-center">{{ $total_area_nozzle }}</td>
                             <td class="text-center">{{ $cd }}</td>
-                            <td class="text-center">{{ round($output3, 2) }}</td>
+                            <th class="text-center">{{ round($output3, 2) }}</th>
                         </tr>
                     </tbody>
                 </table>
@@ -172,9 +172,9 @@
                             <td>8.755</td>
                             <td>9.625</td>
                             <td>6500</td> -->
-                            <td class="text-center">{{ round($output2['drill_pipe_casing_annulus'], 2) }}</td>
+                            <td class="text-center">{{ round(@$output2['drill_pipe_casing_annulus'], 2) }}</td>
                             <td class="text-center"></td>
-                            <td class="text-center">{{ round($output2['drill_pipe_casing_annulus'], 2) }}</td>
+                            <td class="text-center">{{ round(@$output2['drill_pipe_casing_annulus'], 2) }}</td>
                         </tr>
                         <tr>
                             <td class="text-center">Open Hole</td>
@@ -186,18 +186,18 @@
                             <td>8.5</td>
                             <td>8.5</td>
                             <td>3000</td> -->
-                            <td class="text-center">{{ round($output2['drill_pipe_annulus'], 2) }}</td>
-                            <td class="text-center">{{ round($output2['drill_collar_annulus'], 2) }}</td>
-                            <td class="text-center">{{ round($output2['drill_pipe_annulus'] + $output2['drill_collar_annulus'], 2) }}</td>
+                            <td class="text-center">{{ round(@$output2['drill_pipe_annulus'], 2) }}</td>
+                            <td class="text-center">{{ round(@$output2['drill_collar_annulus'], 2) }}</td>
+                            <td class="text-center">{{ round(@$output2['drill_pipe_annulus'] + @$output2['drill_collar_annulus'], 2) }}</td>
                         </tr>
                     </tbody>
 
                     <tfoot>
                         <tr>
                             <th colspan="1" class="text-center">Total</th>
-                            <th class="text-center">{{ round(($output2['drill_pipe_casing_annulus'] + $output2['drill_pipe_annulus']), 2) }}</th>
-                            <th class="text-center">{{ round($output2['drill_collar_annulus'], 2) }}</th>
-                            <th class="text-center">{{ round(($output2['drill_pipe_casing_annulus'] + $output2['drill_pipe_annulus'] + $output2['drill_collar_annulus']), 2) }}</th>
+                            <th class="text-center">{{ round((@$output2['drill_pipe_casing_annulus'] + @$output2['drill_pipe_annulus']), 2) }}</th>
+                            <th class="text-center">{{ round(@$output2['drill_collar_annulus'], 2) }}</th>
+                            <th class="text-center">{{ round((@$output2['drill_pipe_casing_annulus'] + @$output2['drill_pipe_annulus'] + @$output2['drill_collar_annulus']), 2) }}</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -208,7 +208,7 @@
                 <table class="table">
                     <tr>
                         <th>Pressure Loss in Circulating System [psi]</th>
-                        <td>{{ round(($output1 + $total_output2 + $output3), 2) }}</td>
+                        <th>{{ round(($output1 + (@$output2['drill_pipe'] + @$output2['drill_collar']) + (@$output2['drill_pipe_casing_annulus'] + @$output2['drill_pipe_annulus'] + @$output2['drill_collar_annulus']) + $output3), 2) }}</th>
                     </tr>
                 </table>
             </fieldset>
