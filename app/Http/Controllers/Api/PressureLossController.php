@@ -23,7 +23,12 @@ class PressureLossController extends Controller
         $logic = new PressureLossService;
         $returnValue = $logic->calculate($request);
 
-        return response()->json($returnValue);
+        $response = [
+            'status' => 'OK',
+            'data' => $returnValue
+        ];
+
+        return response()->json($response);
     }
 
     public function combination()
