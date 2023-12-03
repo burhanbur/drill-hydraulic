@@ -3,7 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
+
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
+
+use App\Imports\ReadExcelImport;
 
 class HomeController extends Controller
 {
@@ -259,6 +271,30 @@ class HomeController extends Controller
         }
 
         return response()->json($returnValue);
+    }
+
+    public function ecd(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'ecd' => 'required',
+            'files' => 'required|file|mimes:xlsx,xls|max:25600',
+        ]);
+
+        if ($validator->fails()) {
+            \Session::flash('error',$validator->errors()->first());
+
+            return redirect()->back();
+        }
+
+        $ecd = $request->post('ecd');
+
+        if ($ecd) {
+            $path = $request->file('files')->store('temp');
+            $realPath = storage_path('app').'/'.$path;
+            $rows = (@\Excel::toArray(new ReadExcelImport, $realPath)[0]) ?? [];
+        }
+
+        return redirect()->back();
     }
 
     public function unused()

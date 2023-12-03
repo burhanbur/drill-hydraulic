@@ -63,9 +63,9 @@
         <li class="nav-item">
           <a href="#pressure" class="nav-link active" data-toggle="tab"><i class="fas fa-chart-area"></i> Pressure Loss</a>
         </li>
-        {{-- <li class="nav-item">
+        <li class="nav-item">
           <a href="#ecd" class="nav-link" data-toggle="tab"><i class="fa fa-cogs"></i> Equivalent Circulating Density</a>
-        </li> --}}
+        </li>
       </ul>
 
       <!-- <ul class="navbar-nav">

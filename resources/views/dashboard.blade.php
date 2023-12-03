@@ -31,7 +31,44 @@
 @endsection
 
 @section('js')
+<script src='https://cdn.plot.ly/plotly-2.27.0.min.js'></script>
 <script>
+    /* start ecd */
+    var trace1 = {
+      x: [1, 2, 3, 4],
+      y: [10, 15, 13, 17],
+      mode: 'lines+markers',
+      type: 'scatter'
+    };
+
+    var trace2 = {
+      x: [2, 3, 4, 5],
+      y: [16, 5, 11, 9],
+      mode: 'lines+markers',
+      type: 'scatter'
+    };
+
+    var trace3 = {
+      x: [1, 2, 3, 4],
+      y: [12, 9, 15, 12],
+      mode: 'lines+markers',
+      type: 'scatter'
+    };
+
+    var data = [trace1, trace2, trace3];
+
+    var layout = {
+      xaxis: {
+        title: 'PPG',
+      },
+      yaxis: {
+        title: 'Depth (ft-TVD)',
+      }
+    };
+
+    Plotly.newPlot('myDiv', data, layout);
+    /* end ecd */
+
     jQuery('.digitsOnly').keypress(function(event){
         if(event.which !=8 && isNaN(String.fromCharCode(event.which))){
             event.preventDefault();
@@ -239,12 +276,12 @@
                             @include('rheological')
                         </div>
 
-                        <div class="tab-pane active" id="pressure">
+                        <div class="tab-pane" id="pressure">
                             @include('pressure-loss')
                         </div>
 
-                        <div class="tab-pane" id="ecd">
-                            @include('underconstruction')
+                        <div class="tab-pane active" id="ecd">
+                            @include('ecd')
                         </div>
                     </div>
                 </div>

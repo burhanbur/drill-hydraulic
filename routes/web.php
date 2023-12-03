@@ -24,7 +24,9 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('ajax-combination', [HomeController::class, 'ajaxCombination'])->name('ajax.combination');
 Route::get('ajax-output-surface', [HomeController::class, 'ajaxOutputSurfaceEquipment'])->name('ajax.output.surface');
 
+
 Route::group(['prefix' => 'drill-hydraulic'], function () {
+	Route::post('ecd', [HomeController::class, 'ecd'])->name('ecd');
 	Route::get('rheological', [RheologicalController::class, 'index'])->name('rheological');
 	Route::get('pressure-loss', [PressureLossController::class, 'index'])->name('pressure.loss');
 	Route::get('ecd', [EquivalentCirculatingController::class, 'index'])->name('ecd');

@@ -68,7 +68,6 @@
                 </table>
             </fieldset>
 
-
             <fieldset class="border p-3 reset">
                 <legend class="reset"><strong>Output Pressure Loss in Bit</strong></legend>
                 <table class="table">
