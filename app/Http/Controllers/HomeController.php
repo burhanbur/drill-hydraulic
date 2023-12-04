@@ -292,6 +292,11 @@ class HomeController extends Controller
             $path = $request->file('files')->store('temp');
             $realPath = storage_path('app').'/'.$path;
             $rows = (@\Excel::toArray(new ReadExcelImport, $realPath)[0]) ?? [];
+
+            $results = [];
+            foreach ($rows as $key => $value) {
+                $results[] = $value->id;
+            }
         }
 
         return redirect()->back();

@@ -38,21 +38,24 @@
       x: [1, 2, 3, 4],
       y: [10, 15, 13, 17],
       mode: 'lines+markers',
-      type: 'scatter'
+      type: 'scatter',
+      name: 'Pore Pressure (ppg)'
     };
 
     var trace2 = {
       x: [2, 3, 4, 5],
       y: [16, 5, 11, 9],
       mode: 'lines+markers',
-      type: 'scatter'
+      type: 'scatter',
+      name: 'Fracture Pressure'
     };
 
     var trace3 = {
       x: [1, 2, 3, 4],
       y: [12, 9, 15, 12],
       mode: 'lines+markers',
-      type: 'scatter'
+      type: 'scatter',
+      name: 'ECD'
     };
 
     var data = [trace1, trace2, trace3];
@@ -63,6 +66,11 @@
       },
       yaxis: {
         title: 'Depth (ft-TVD)',
+      },
+      legend: {
+        orientation: 'h', // 'h' untuk horizontal, 'v' untuk vertical
+        y: 3.1,  // Adjust nilai y sesuai kebutuhan
+        x: 0.5   // Adjust nilai x sesuai kebutuhan
       }
     };
 
