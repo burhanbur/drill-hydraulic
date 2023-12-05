@@ -11,7 +11,7 @@
 
     <div class="row">
         <div class="col-md-6">
-            <form action="{{ route('ecd') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('store.ecd') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <label>Unggah data PPFG</label>
@@ -20,13 +20,21 @@
                 </div>
                 <br>
                 <button type="submit" name="ecd" value="ecd" class="btn btn-primary"><i class="fa fa-save"></i>&nbsp; Submit</button>
+                <a href="{{ asset('template-ecd.xlsx') }}" class="btn btn-success"><i class="fa fa-download"></i>&nbsp; Download Template</a>
             </form>
 
             <br>
 
-            Cutting Density (ppg): <strong></strong>
-            <br>
-            Cutting Concentration (%): <strong></strong>
+            <table>
+                <tr>
+                    <td>Cutting Density (ppg)</td>
+                    <td>: <strong>{{ $cuttingDensity }}</strong></td>
+                </tr>
+                <tr>
+                    <td>Cutting Concentration (%)</td>
+                    <td>: <strong>{{ $cuttingConcentration }}</strong></td>
+                </tr>
+            </table>
 
             <br><br>
 
@@ -46,11 +54,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach([] as $key => $value)
+                        @foreach($data as $key => $value)
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ $value['depth_1'] }}</td>
+                                <td>{{ $value['pp'] }}</td>
+                                <td>{{ $value['fp'] }}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -70,10 +78,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach([] as $key => $value)
+                        @foreach($results as $key => $value)
                             <tr>
-                                <td></td>
-                                <td></td>
+                                <td>{{ $value['tvd'] }}</td>
+                                <td>{{ $value['ecd'] }}</td>
                             </tr>
                         @endforeach
                         </tbody>

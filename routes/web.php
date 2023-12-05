@@ -21,6 +21,7 @@ use App\Http\Controllers\RheologicalController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::post('store', [HomeController::class, 'index'])->name('store.ecd');
 Route::get('ajax-combination', [HomeController::class, 'ajaxCombination'])->name('ajax.combination');
 Route::get('ajax-output-surface', [HomeController::class, 'ajaxOutputSurfaceEquipment'])->name('ajax.output.surface');
 

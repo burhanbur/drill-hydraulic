@@ -35,24 +35,24 @@
 <script>
     /* start ecd */
     var trace1 = {
-      x: [1, 2, 3, 4],
-      y: [10, 15, 13, 17],
+      x: @json($gxPp),
+      y: @json($gyPp),
       mode: 'lines+markers',
       type: 'scatter',
       name: 'Pore Pressure (ppg)'
     };
 
     var trace2 = {
-      x: [2, 3, 4, 5],
-      y: [16, 5, 11, 9],
+      x: @json($gxFp),
+      y: @json($gyFp),
       mode: 'lines+markers',
       type: 'scatter',
       name: 'Fracture Pressure'
     };
 
     var trace3 = {
-      x: [1, 2, 3, 4],
-      y: [12, 9, 15, 12],
+      x: @json($gxEcd),
+      y: @json($gyEcd),
       mode: 'lines+markers',
       type: 'scatter',
       name: 'ECD'
@@ -66,6 +66,7 @@
       },
       yaxis: {
         title: 'Depth (ft-TVD)',
+        autorange: 'reversed'
       },
       legend: {
         orientation: 'h', // 'h' untuk horizontal, 'v' untuk vertical
@@ -284,11 +285,11 @@
                             @include('rheological')
                         </div>
 
-                        <div class="tab-pane" id="pressure">
+                        <div class="{{ $panePl }}" id="pressure">
                             @include('pressure-loss')
                         </div>
 
-                        <div class="tab-pane active" id="ecd">
+                        <div class="{{ $paneEcd }}" id="ecd">
                             @include('ecd')
                         </div>
                     </div>

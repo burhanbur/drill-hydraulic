@@ -61,10 +61,10 @@
           <a href="#rheological" class="nav-link" data-toggle="tab"><i class="fa fa-wrench"></i> Rheological</a>
         </li> --}}
         <li class="nav-item">
-          <a href="#pressure" class="nav-link active" data-toggle="tab"><i class="fas fa-chart-area"></i> Pressure Loss</a>
+          <a href="#pressure" class="{{ $highlightPl }}" data-toggle="tab"><i class="fas fa-chart-area"></i> Pressure Loss</a>
         </li>
         <li class="nav-item">
-          <a href="#ecd" class="nav-link" data-toggle="tab"><i class="fa fa-cogs"></i> Equivalent Circulating Density</a>
+          <a href="#ecd" class="{{ $highlightEcd }}" data-toggle="tab"><i class="fa fa-cogs"></i> Equivalent Circulating Density</a>
         </li>
       </ul>
 

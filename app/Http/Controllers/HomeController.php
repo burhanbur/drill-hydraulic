@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
+use Excel;
+
 use App\Imports\ReadExcelImport;
 
 class HomeController extends Controller
@@ -193,6 +195,70 @@ class HomeController extends Controller
         // output circulating system
         $output4 = '';
 
+        /* start ecd */ 
+        $data = [];
+        $results = [];
+        $gxPp = [];
+        $gyPp = [];
+        $gxFp = [];
+        $gyFp = [];
+        $gxEcd = [];
+        $gyEcd = [];
+        $ecd = $request->post('ecd');
+
+        $panePl = 'tab-pane active';
+        $paneEcd = 'tab-pane';
+        $highlightPl = 'nav-link active';
+        $highlightEcd = 'nav-link';
+        $cuttingDensity = 0;
+        $cuttingConcentration = 0;
+        if ($ecd) {
+            $panePl = 'tab-pane';
+            $paneEcd = 'tab-pane active';
+            $highlightPl = 'nav-link';
+            $highlightEcd = 'nav-link active';
+
+            $validator = Validator::make($request->all(), [
+                'files' => 'required|file|mimes:xlsx,xls|max:25600',
+            ]);
+
+            if ($validator->fails()) {
+                \Session::flash('error',$validator->errors()->first());
+
+                return redirect()->back();
+            }
+
+            $path = $request->file('files')->store('temp');
+            $realPath = storage_path('app').'/'.$path;
+            $rows = (@\Excel::toArray(new ReadExcelImport, $realPath)[0]) ?? [];
+
+            foreach ($rows as $key => $value) {
+                $data[$key]['depth_1'] = $value[0];
+                $data[$key]['pp'] = $value[1];
+                $data[$key]['fp'] = $value[2];
+            }
+
+            // perhitungan sumbu y dan sumbu x
+            foreach ($data as $k => $v) {
+                $results[$k]['tvd'] = $v['depth_1'];
+                $results[$k]['pp'] = $v['pp'];
+                $results[$k]['fp'] = $v['fp'];
+                $results[$k]['ecd'] = '10.72';
+
+                // grafik
+                $gxPp[] = $v['pp'];
+                $gyPp[] = $v['depth_1'];
+                $gxFp[] = $v['fp'];
+                $gyFp[] = $v['depth_1'];
+                $gxEcd[] = '10.72';
+                $gyEcd[] = $v['depth_1'];
+            }
+
+            $cuttingDensity = 0;
+            $cuttingConcentration = 0;
+        }
+        /* end ecd */
+
         return view('dashboard', get_defined_vars());
     }
 
@@ -293,9 +359,17 @@ class HomeController extends Controller
             $realPath = storage_path('app').'/'.$path;
             $rows = (@\Excel::toArray(new ReadExcelImport, $realPath)[0]) ?? [];
 
-            $results = [];
+            $data = [];
             foreach ($rows as $key => $value) {
-                $results[] = $value->id;
+                $data[$key]['depth_1'] = $value[0];
+                $data[$key]['pp'] = $value[1];
+                $data[$key]['fp'] = $value[2];
+            }
+
+            // perhitungan sumbu y dan sumbu x
+            $results = [];
+            foreach ($results as $k => $v) {
+
             }
         }
 
